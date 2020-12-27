@@ -10,5 +10,5 @@ public:
 	void loop();
 
 private:
-	const int window_width = 1200, window_height = 600;
+	const int window_width = 1440, window_height = 1080;
 };

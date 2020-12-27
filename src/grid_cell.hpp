@@ -11,10 +11,9 @@ public:
 		this->color = color;
 	}
 
-	void draw()
+	virtual void draw()
 	{
 		DrawRectangleRec(*this, color);
-		DrawRectangleLinesEx(*this, 2, RED);
 	}
 
 private:
