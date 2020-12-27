@@ -12,6 +12,7 @@ class map_generator
         int **map; //0-tunnel, 1-rock
         int **map2;
         map_generator(unsigned int seed);
+	~map_generator()
 
 
     private:

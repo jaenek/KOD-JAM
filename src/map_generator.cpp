@@ -50,6 +50,15 @@ map_generator::map_generator(unsigned int seed)
 
 }
 
+map_generator::~map_generator()
+{
+    for (int i=0; i < width; i++)
+    {
+        delete [] map[i];
+    }
+    delete [] map;
+}
+
 void map_generator::smooth_map() {
     map2 = new int*[width];
     for (int i=0; i < width; i++)
