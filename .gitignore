@@ -6,3 +6,4 @@ build/
 tags
 src/compile_commands.json
 *.swp
+*.exe
