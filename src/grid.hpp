@@ -11,7 +11,7 @@ public:
 		width = columns * cell_size;
 		height = rows * cell_size;
 		x = (window_width - width) / 2;
-		y = y;
+		y = margin_y;
 
 		for (int row = 0; row < rows; row++) {
 			for (int col = 0; col < columns; col++) {
@@ -26,11 +26,6 @@ public:
 		}
 	}
 
-	void transform(tablica)
-	{
-
-	}
-
 	void draw()
 	{
 		for (auto& row : cells) {
@@ -42,8 +37,8 @@ public:
 
 private:
 	static const int columns = 50;
-	static const int rows = 20;
+	static const int rows = 30;
 	std::array<std::array<std::unique_ptr<grid_cell>, columns>, rows> cells;
-	const float cell_size = 20;
+	const float cell_size = 10;
 };
 

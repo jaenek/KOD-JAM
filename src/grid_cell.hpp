@@ -14,6 +14,7 @@ public:
 	void draw()
 	{
 		DrawRectangleRec(*this, color);
+		DrawRectangleLinesEx(*this, 2, RED);
 	}
 
 private:
