@@ -5,15 +5,16 @@ void main_window::loop()
 	InitWindow(window_width, window_height, "kod-jam");
 	SetTargetFPS(60);
 
+	grid g(window_width, 60);
+
 	bool quit = false;
 	while (!WindowShouldClose() & !quit) {
 
 		BeginDrawing();
 
-		ClearBackground(RAYWHITE);
+		ClearBackground(BLACK);
 
-		const char* text = "tu ma byc gra";
-		DrawText(text, (window_width-MeasureText(text,20))/2, window_height/2-10, 20, LIGHTGRAY);
+		g.draw();
 
 		EndDrawing();
 	}
