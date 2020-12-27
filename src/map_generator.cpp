@@ -3,19 +3,14 @@
 
 map_generator::map_generator(unsigned int seed)
 {
-    map = new int*[width];
-    for (int i=0; i < width; i++)
-    {
-        map[i] = new int[height];
-    }
     srand(seed);
 
     //Wypelnij kamieniem / niczym / podloga
-    for (int x=0; x < width; x++)
+    for (int x=0; x < rows; x++)
     {
-        for( int y = 0; y < height; y++)
+        for( int y = 0; y < columns; y++)
         {
-            if ( x == 0 || x == width - 1 || y == 0 || y == height - 1) {
+            if ( x == 0 || x == rows - 1 || y == 0 || y == columns - 1) {
                 //Border
                 map[x][y] = 1;
             }
@@ -28,47 +23,26 @@ map_generator::map_generator(unsigned int seed)
     
         }
     }
-    
+
     // Wygladz
     for(int i =0; i < smoothings; i++) {
        map_generator::smooth_map();
     }
 
-    for (int x=0; x < width; x++)
+    for (int x=0; x < rows; x++)
     {
-        for (int y=0; y < height; y++)
+        for (int y=0; y < columns; y++)
         {
             map[x][y] = map2[x][y];
         }
     }
-
-    for (int i=0; i < width; i++)
-    {
-        delete [] map2[i];
-    }
-    delete [] map2;
-
 }
 
-map_generator::~map_generator()
+void map_generator::smooth_map()
 {
-    for (int i=0; i < width; i++)
+    for (int x=0; x < rows; x++)
     {
-        delete [] map[i];
-    }
-    delete [] map;
-}
-
-void map_generator::smooth_map() {
-    map2 = new int*[width];
-    for (int i=0; i < width; i++)
-    {
-        map2[i] = new int[height];
-    }
-
-    for (int x=0; x < width; x++)
-    {
-        for (int y=0; y < height; y++)
+        for (int y=0; y < columns; y++)
         {
             int surround_walls = count_walls(x, y);
 
@@ -90,7 +64,7 @@ int map_generator::count_walls(int cordX, int cordY)
         for (int y=cordY-1; y <= cordY+1; y++)
         {
             //Jesli rozwazany "piksel" jest w dozwolonej lokalizacji
-            if (x >= 0 && x < width && y >= 0 && y < height)
+            if (x >= 0 && x < rows && y >= 0 && y < columns)
             {
                 //Jesli rozwazany "piksel" nie jest tym, ktory jest w cordX i cordT
                 if (x != cordX || y != cordY)

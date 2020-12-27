@@ -3,17 +3,16 @@
 #include <iostream>
 #include <cstdlib>
 #include <ctime>
+#include <array>
 
 class map_generator
 {
     public:
-        const int width=30;
-        const int height=100;
-        int **map; //0-tunnel, 1-rock
-        int **map2;
+        static const int rows=30;
+        static const int columns=100;
+        std::array<std::array<int, columns>, rows> map{}; // 0-tunnel 1-rock
+        std::array<std::array<int, columns>, rows> map2{};
         map_generator(unsigned int seed);
-	~map_generator()
-
 
     private:
         const int filler_probability = 55;
