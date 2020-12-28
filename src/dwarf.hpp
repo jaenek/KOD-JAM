@@ -30,10 +30,10 @@ public:
 
 	void set_start_pos(int row, int col);
 
-	void move_up();
-	void move_left();
-	void move_down();
-	void move_right();
+	void move_up(Camera2D & camera);
+	void move_left(Camera2D& camera);
+	void move_down(Camera2D& camera);
+	void move_right(Camera2D& camera);
 
 	void use_pickaxe();
 

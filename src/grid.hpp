@@ -33,7 +33,17 @@ public:
 		{
 			for (int col = 0; col < COLS; col++)
 			{
-				if (m.map[row][col] == map_object::TUNNEL)
+				if (m.map[row][col] == map_object::BORDER)
+				{
+					cells[row][col] = std::make_unique<rock>(
+						CELL_SIZE * col + x,
+						CELL_SIZE * row + y,
+						CELL_SIZE,
+						CELL_SIZE,
+						false
+						);
+				}
+				else if (m.map[row][col] == map_object::TUNNEL)
 				{
 					cells[row][col] = std::make_unique<tunnel>(
 						assets,
