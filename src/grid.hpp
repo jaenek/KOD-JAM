@@ -7,6 +7,7 @@
 #include "map_generator.hpp"
 #include "rock.hpp"
 #include "tunnel.hpp"
+#include "gold.hpp"
 
 typedef std::array<std::array<std::unique_ptr<grid_cell>, COLS>, ROWS> MAP;
 
@@ -31,7 +32,7 @@ public:
 		{
 			for (int col = 0; col < COLS; col++)
 			{
-				if (m.map[row][col] == 0)
+				if (m.map[row][col] == map_object::TUNNEL)
 				{
 					cells[row][col] = std::make_unique<tunnel>(
 						CELL_SIZE * col + x,
@@ -40,7 +41,7 @@ public:
 						CELL_SIZE
 						);
 				}
-				else
+				else if (m.map[row][col] == map_object::ROCK)
 				{
 					cells[row][col] = std::make_unique<rock>(
 						CELL_SIZE * col + x,
@@ -48,6 +49,15 @@ public:
 						CELL_SIZE,
 						CELL_SIZE,
 						true
+						);
+				}
+				else if (m.map[row][col] == map_object::GOLD_ORE)
+				{
+					cells[row][col] = std::make_unique<gold>(
+						CELL_SIZE * col + x,
+						CELL_SIZE * row + y,
+						CELL_SIZE,
+						CELL_SIZE
 						);
 				}
 			}

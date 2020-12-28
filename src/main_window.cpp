@@ -24,6 +24,9 @@ void main_window::loop()
 		else if (IsKeyPressed(KEY_D))
 			player.move_right();
 
+		if (IsKeyPressed(KEY_SPACE))
+			player.use_pickaxe();
+
 		BeginDrawing();
 
 		ClearBackground(YELLOW);
