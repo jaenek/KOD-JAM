@@ -5,25 +5,31 @@
 #include "grid_cell.hpp"
 #include "map_generator.hpp"
 
+typedef std::array<std::array<std::unique_ptr<grid_cell>, COLS>, ROWS> MAP;
+
+const float CELL_SIZE = 60;
+
 class grid : Rectangle {
 public:
 
 	grid(int window_width, float margin_y) {
-		width = columns * cell_size;
-		height = rows * cell_size;
+		width = COLS * CELL_SIZE;
+		height = ROWS * CELL_SIZE;
 		x = (window_width - width) / 2;
 		y = margin_y;
 	}
 
 	void transform(map_generator &m)
 	{
-		for (int row = 0; row < rows; row++) {
-			for (int col = 0; col < columns; col++) {
+		for (int row = 0; row < ROWS; row++)
+		{
+			for (int col = 0; col < COLS; col++)
+			{
 				cells[row][col] = std::make_unique<grid_cell>(
-					cell_size * col + x,
-					cell_size * row + y,
-					cell_size,
-					cell_size,
+					CELL_SIZE * col + x,
+					CELL_SIZE * row + y,
+					CELL_SIZE,
+					CELL_SIZE,
 					(m.map[row][col]) ? BLACK : RAYWHITE
 				);
 			}
@@ -40,9 +46,5 @@ public:
 	}
 
 private:
-	static const int columns = 100;
-	static const int rows = 30;
-	std::array<std::array<std::unique_ptr<grid_cell>, columns>, rows> cells;
-	const float cell_size = 60;
+	MAP cells;
 };
-
