@@ -30,7 +30,7 @@ void dwarf::set_start_pos(int row, int col)
 	y = row * CELL_SIZE + _grid.cells[0][0]->y - CELL_SIZE/2;
 }
 
-void dwarf::move_up()
+void dwarf::move_up(Camera2D & camera)
 {
 	if (_dir != direction::UP)
 	{
@@ -43,11 +43,12 @@ void dwarf::move_up()
 		{
 			_row--;
 			y -= CELL_SIZE;
+			camera.target = { x, y };
 		}
 	}
 }
 
-void dwarf::move_left()
+void dwarf::move_left(Camera2D& camera)
 {
 	if (_dir != direction::LEFT)
 	{
@@ -60,11 +61,12 @@ void dwarf::move_left()
 		{
 			_col--;
 			x -= CELL_SIZE;
+			camera.target = { x, y };
 		}
 	}
 }
 
-void dwarf::move_down()
+void dwarf::move_down(Camera2D& camera)
 {
 	if (_dir != direction::DOWN)
 	{
@@ -77,11 +79,12 @@ void dwarf::move_down()
 		{
 			_row++;
 			y += CELL_SIZE;
+			camera.target = { x, y };
 		}
 	}
 }
 
-void dwarf::move_right()
+void dwarf::move_right(Camera2D& camera)
 {
 	if (_dir != direction::RIGHT)
 	{
@@ -94,6 +97,7 @@ void dwarf::move_right()
 		{
 			_col++;
 			x += CELL_SIZE;
+			camera.target = { x, y };
 		}
 	}
 }
