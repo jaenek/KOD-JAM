@@ -1,6 +1,6 @@
 #include "tunnel.hpp"
 
-tunnel::tunnel(float x, float y, float width, float height) : grid_cell(x, y, width, height)
+tunnel::tunnel(grid_assets& assets, float x, float y, float width, float height) : grid_cell(assets, x, y, width, height)
 {
 	this->color = WHITE;
 	destructable = false;
@@ -10,5 +10,6 @@ tunnel::tunnel(float x, float y, float width, float height) : grid_cell(x, y, wi
 
 void tunnel::draw()
 {
-	DrawRectangleRec(*this, color);
+	//DrawRectangleRec(*this, color);
+	DrawTexture(assets.textures[cell_type], x, y, WHITE);
 }

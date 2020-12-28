@@ -1,6 +1,6 @@
 #include "rock.hpp"
 
-rock::rock(float x, float y, float width, float height, bool destruct) : grid_cell(x, y, width, height)
+rock::rock(grid_assets& assets, float x, float y, float width, float height, bool destruct) : grid_cell(assets, x, y, width, height)
 {
 	this->color = BLACK;
 	destructable = destruct;
@@ -10,7 +10,8 @@ rock::rock(float x, float y, float width, float height, bool destruct) : grid_ce
 
 void rock::draw()
 {
-	DrawRectangleRec(*this, color);
+	//DrawRectangleRec(*this, color);
+	DrawTexture(assets.textures[cell_type], x, y, WHITE);
 }
 
 void rock::break_wall()

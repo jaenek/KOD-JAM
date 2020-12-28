@@ -5,6 +5,7 @@
 #include <raylib.h>
 
 #include "map_generator.hpp"
+#include "grid_assets.hpp"
 #include "rock.hpp"
 #include "tunnel.hpp"
 #include "gold.hpp"
@@ -26,7 +27,7 @@ public:
 		y = margin_y;
 	}
 
-	void transform(map_generator &m)
+	void transform(map_generator &m, grid_assets& assets)
 	{
 		for (int row = 0; row < ROWS; row++)
 		{
@@ -35,6 +36,7 @@ public:
 				if (m.map[row][col] == map_object::TUNNEL)
 				{
 					cells[row][col] = std::make_unique<tunnel>(
+						assets,
 						CELL_SIZE * col + x,
 						CELL_SIZE * row + y,
 						CELL_SIZE,
@@ -44,6 +46,7 @@ public:
 				else if (m.map[row][col] == map_object::ROCK)
 				{
 					cells[row][col] = std::make_unique<rock>(
+						assets,
 						CELL_SIZE * col + x,
 						CELL_SIZE * row + y,
 						CELL_SIZE,
@@ -54,6 +57,7 @@ public:
 				else if (m.map[row][col] == map_object::GOLD_ORE)
 				{
 					cells[row][col] = std::make_unique<gold>(
+						assets,
 						CELL_SIZE * col + x,
 						CELL_SIZE * row + y,
 						CELL_SIZE,

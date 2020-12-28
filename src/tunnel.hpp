@@ -5,6 +5,6 @@
 class tunnel : public grid_cell
 {
 public:
-	tunnel(float x, float y, float width, float height);
+	tunnel(grid_assets& assets, float x, float y, float width, float height);
 	virtual void draw() override;
 };
