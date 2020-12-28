@@ -3,6 +3,7 @@
 #include <raylib.h>
 
 #include "grid.hpp"
+#include "dwarf.hpp"
 
 class main_window
 {
