@@ -1,5 +1,7 @@
 #include "main_window.hpp"
-
+#include "town.hpp"
+#include "shop.hpp"
+#include "mine.hpp"
 
 void main_window::loop()
 {
@@ -21,29 +23,52 @@ void main_window::loop()
 	camera.rotation = 0.0f;
 	camera.zoom = 1.0f;
 
+	town town;
+	shop shop;
+	mine mine;
+
 	bool quit = false;
 	while (!WindowShouldClose() & !quit) {
-		if (IsKeyPressed(KEY_W))
-			player.move_up(camera);
-		else if (IsKeyPressed(KEY_S))
-			player.move_down(camera);
-		else if (IsKeyPressed(KEY_A))
-			player.move_left(camera);
-		else if (IsKeyPressed(KEY_D))
-			player.move_right(camera);
+		mouse_position = GetMousePosition();
 
-		if (IsKeyPressed(KEY_SPACE))
-			player.use_pickaxe();
+		if (draw_window == window_type::TOWN) {
+			BeginDrawing();
+			ClearBackground(RAYWHITE);
+			town.draw();
+			EndDrawing();
+		}
+		else if (draw_window == window_type::SHOP) {
+			BeginDrawing();
+			ClearBackground(RAYWHITE);
+			shop.draw();
+			EndDrawing();
+			
+		}
+		else if (draw_window == window_type::MINE) {
+			if (IsKeyPressed(KEY_W))
+				player.move_up(camera);
+			else if (IsKeyPressed(KEY_S))
+				player.move_down(camera);
+			else if (IsKeyPressed(KEY_A))
+				player.move_left(camera);
+			else if (IsKeyPressed(KEY_D))
+				player.move_right(camera);
 
-		BeginDrawing();
-		BeginMode2D(camera);
+			if (IsKeyPressed(KEY_SPACE))
+				player.use_pickaxe();
 
-		ClearBackground(BLACK);
+			BeginMode2D(camera);
 
-		mine_grid.draw();
-		player.draw();
-		EndMode2D();
-		EndDrawing();
+			ClearBackground(BLACK);
+
+			mine_grid.draw();
+			player.draw();
+			EndMode2D();
+
+			mine.draw();
+			EndDrawing();
+		}
+		
 	}
 
 	CloseWindow();
