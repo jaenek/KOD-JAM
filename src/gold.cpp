@@ -1,8 +1,24 @@
 #include "gold.hpp"
 
-gold::gold(float x, float y, float width, float height, Color color) : grid_cell(x, y, width, height)
+gold::gold(float x, float y, float width, float height) : grid_cell(x, y, width, height)
 {
+	color = YELLOW;
 	destructable = true;
 	blocked = true;
-	grid_type = map_object::GOLD_ORE;
+	cell_type = map_object::GOLD_ORE;
+}
+
+void gold::draw()
+{
+	DrawRectangleRec(*this, color);
+}
+
+int gold::dig_gold()
+{
+	color = WHITE;
+	destructable = false;
+	blocked = false;
+	cell_type = map_object::TUNNEL;
+
+	return rand() % max_gold + min_gold;
 }

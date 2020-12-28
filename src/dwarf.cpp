@@ -7,7 +7,7 @@ dwarf::dwarf(grid& main_grid, float width, float height) : _grid(main_grid)
 	this->_color = GREEN;
 }
 
-/*grid_cell & dwarf::block_in_front(const _grid._grid.cells & _grid.cells) const
+grid_cell & dwarf::block_in_front(const grid& cells) const
 {
 	switch(_dir)
 	{
@@ -20,7 +20,7 @@ dwarf::dwarf(grid& main_grid, float width, float height) : _grid(main_grid)
 		case (direction::RIGHT):
 			return *_grid.cells[_row][_col + 1];
 	}
-}*/
+}
 
 void dwarf::set_start_pos(int row, int col)
 {
@@ -98,29 +98,26 @@ void dwarf::move_right()
 	}
 }
 
-/*bool dwarf::use_pickaxe(_grid.cells& _grid.cells)
+void dwarf::use_pickaxe()
 {
-	if (!_pickaxe)
+	if (!_pickaxe)//kilof zepsuty
 	{
-		// np. jakis dzwiek ze kilof zepsuty
-		return false;
+		return;
 	}
-	else
+
+	if (block_in_front(_grid).destructable == true)
 	{
-		grid_cell cell = block_in_front(_grid.cells);
-		/*
-		switch (cell._grid.cells_object)
+		_pickaxe--;
+		if (block_in_front(_grid).cell_type == map_object::GOLD_ORE)
 		{
-			case (_grid.cells_object::ROCK):
-				if (cell.destructable)
-					//funkcja z rock
-				break
-				
+			_gold += dynamic_cast<gold *>(&block_in_front(_grid))->dig_gold();
 		}
-		
-		return true;
+		else
+		{
+			dynamic_cast<rock *>(&block_in_front(_grid))->break_wall();
+		}
 	}
-}*/
+}
 
 void dwarf::draw()
 {

@@ -5,10 +5,17 @@ rock::rock(float x, float y, float width, float height, bool destruct) : grid_ce
 	this->color = BLACK;
 	destructable = destruct;
 	blocked = true;
-	grid_type = map_object::ROCK;
+	cell_type = map_object::ROCK;
 }
 
 void rock::draw()
 {
 	DrawRectangleRec(*this, color);
+}
+
+void rock::break_wall()
+{
+	color = WHITE;
+	destructable = false;
+	blocked = false;
 }
