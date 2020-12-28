@@ -1,12 +1,12 @@
 #pragma once
 
 #include <raylib.h>
+#include "map_object.hpp"
 
-enum class map_object { TUNNEL, ROCK, BORDER, GOLD_ORE, ENTRY, EXIT };
 
 class grid_cell : public Rectangle {
 public:
-	map_object grid_type;
+	map_object cell_type=map_object::TUNNEL;
 	Color color = PINK;
 	bool blocked = false;// true-dwarf shall not pass
 	bool destructable = false;// true-can be destroyed with pickaxe
