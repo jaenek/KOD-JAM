@@ -19,8 +19,6 @@ void main_window::loop()
 	camera.rotation = 0.0f;
 	camera.zoom = 1.0f;
 
-	SetTargetFPS(60);
-
 	bool quit = false;
 	while (!WindowShouldClose() & !quit) {
 		if (IsKeyPressed(KEY_W))
