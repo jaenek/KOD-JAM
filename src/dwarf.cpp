@@ -1,81 +1,128 @@
 #include "dwarf.hpp"
 
-dwarf::dwarf(float width, float height)
+dwarf::dwarf(grid& main_grid, float width, float height) : _grid(main_grid)
 {
 	this->width = width;
 	this->height = height;
+	this->_color = GREEN;
 }
 
-void dwarf::set_start_pos(int x, int y)
+/*grid_cell & dwarf::block_in_front(const _grid._grid.cells & _grid.cells) const
 {
-	row = x;
-	col = y;
-}
-
-void dwarf::move_up(MAP & map)
-{
-	if (dir != UP)
+	switch(_dir)
 	{
-		dir = UP;
-		//obróæ graficzke
+		case (direction::UP):
+			return *_grid.cells[_row - 1][_col];
+		case (direction::LEFT):
+			return *_grid.cells[_row][_col - 1];
+		case (direction::DOWN):
+			return *_grid.cells[_row + 1][_col];
+		case (direction::RIGHT):
+			return *_grid.cells[_row][_col + 1];
+	}
+}*/
+
+void dwarf::set_start_pos(int row, int col)
+{
+	_row = row;
+	_col = col;
+	x = col * CELL_SIZE + _grid.cells[0][0]->x;
+	y = row * CELL_SIZE + _grid.cells[0][0]->y - CELL_SIZE/2;
+}
+
+void dwarf::move_up()
+{
+	if (_dir != direction::UP)
+	{
+		_dir = direction::UP;
+		//obroc graficzke
 	}
 	else
 	{
-		if (row != 0 && map[row - 1][col].blocked == false)
+		if (_row != 0 && _grid.cells[_row - 1][_col]->blocked == false)
 		{
-			row--;
+			_row--;
 			y -= CELL_SIZE;
 		}
 	}
 }
 
-void dwarf::move_left(MAP& map)
+void dwarf::move_left()
 {
-	if (dir != LEFT)
+	if (_dir != direction::LEFT)
 	{
-		dir = LEFT;
-		//obróæ graficzke
+		_dir = direction::LEFT;
+		//obroc graficzke
 	}
 	else
 	{
-		if (col != 0 && map[row][col - 1].blocked == false)
+		if (_col != 0 && _grid.cells[_row][_col - 1]->blocked == false)
 		{
-			col--;
+			_col--;
 			x -= CELL_SIZE;
 		}
 	}
 }
 
-void dwarf::move_down(MAP& map)
+void dwarf::move_down()
 {
-	if (dir != DOWN)
+	if (_dir != direction::DOWN)
 	{
-		dir = DOWN;
-		//obróæ graficzkê
+		_dir = direction::DOWN;
+		//obroc graficzke
 	}
 	else
 	{
-		if (row != ROWS - 1 && map[row + 1][col].blocked == false)
+		if (_row != ROWS - 1 && _grid.cells[_row + 1][_col]->blocked == false)
 		{
-			row++;
+			_row++;
 			y += CELL_SIZE;
 		}
 	}
 }
 
-void dwarf::move_right(MAP& map)
+void dwarf::move_right()
 {
-	if (dir != RIGHT)
+	if (_dir != direction::RIGHT)
 	{
-		dir = RIGHT;
-		// obróæ graficzke
+		_dir = direction::RIGHT;
+		// obroc graficzke
 	}
 	else
 	{
-		if (col != COLS - 1 && map[row][col + 1].blocked == false)
+		if (_col != COLS - 1 && _grid.cells[_row][_col + 1]->blocked == false)
 		{
-			col++;
+			_col++;
 			x += CELL_SIZE;
 		}
 	}
+}
+
+/*bool dwarf::use_pickaxe(_grid.cells& _grid.cells)
+{
+	if (!_pickaxe)
+	{
+		// np. jakis dzwiek ze kilof zepsuty
+		return false;
+	}
+	else
+	{
+		grid_cell cell = block_in_front(_grid.cells);
+		/*
+		switch (cell._grid.cells_object)
+		{
+			case (_grid.cells_object::ROCK):
+				if (cell.destructable)
+					//funkcja z rock
+				break
+				
+		}
+		
+		return true;
+	}
+}*/
+
+void dwarf::draw()
+{
+	DrawRectangleRec(*this, _color);
 }

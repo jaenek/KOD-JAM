@@ -2,31 +2,22 @@
 
 #include <raylib.h>
 
-enum class map_object { tunnel = 0, rock = 1, border = 2, gold = 3, entry = 4, exit = 5 };
+enum class map_object { TUNNEL, ROCK, BORDER, GOLD_ORE, ENTRY, EXIT };
 
-class grid_cell : Rectangle {
+class grid_cell : public Rectangle {
 public:
-	bool blocked;// true-dwarf shall not pass
-	bool destructable;// true-can be destroyed with pickaxe
+	map_object grid_type;
+	Color color = PINK;
+	bool blocked = false;// true-dwarf shall not pass
+	bool destructable = false;// true-can be destroyed with pickaxe
 
-	grid_cell(float x, float y, float width, float height, Color color)
+	grid_cell(float x, float y, float width, float height)
 	{
 		this->x = x;
 		this->y = y;
 		this->width = width;
 		this->height = height;
-		this->color = color;
 	}
 
-	virtual void draw()
-	{
-		DrawRectangleRec(*this, color);
-	}
-
-	virtual void interact() = 0;
-
-private:
-	Color color;
-	map_object grid_type;
-	bool lighted;// true-in range of torch
+	virtual void draw() = 0;
 };

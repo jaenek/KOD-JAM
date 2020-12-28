@@ -1,6 +1,5 @@
 #include "map_generator.hpp"
 
-
 map_generator::map_generator(unsigned int seed)
 {
     srand(seed);

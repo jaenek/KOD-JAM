@@ -1,19 +1,14 @@
-#include "grid_cells.hpp"
+#include "rock.hpp"
 
-rock::rock(float x, float y, float width, float height, Color color, bool destruct) : grid_cell(x, y, width, height, color)
+rock::rock(float x, float y, float width, float height, bool destruct) : grid_cell(x, y, width, height)
 {
+	this->color = BLACK;
 	destructable = destruct;
-	lighted = false;
 	blocked = true;
+	grid_type = map_object::ROCK;
 }
 
-bool rock::interact() const
+void rock::draw()
 {
-	if (!destructable)
-		return false;//triggeruje jakiú düwiÍk typu z≥a odpowiedü w familiadzie
-
-	//uszkodü kilofa
-	//usuÒ z mapy
-
-	return true;
+	DrawRectangleRec(*this, color);
 }

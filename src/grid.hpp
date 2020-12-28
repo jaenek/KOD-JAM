@@ -1,15 +1,21 @@
+#pragma once
+
 #include <array>
 #include <memory>
 #include <raylib.h>
 
-#include "grid_cell.hpp"
 #include "map_generator.hpp"
+#include "rock.hpp"
+#include "tunnel.hpp"
 
 typedef std::array<std::array<std::unique_ptr<grid_cell>, COLS>, ROWS> MAP;
 
 const float CELL_SIZE = 60;
 
+class dwarf;
+
 class grid : Rectangle {
+	friend class dwarf;
 public:
 
 	grid(int window_width, float margin_y) {
@@ -25,13 +31,25 @@ public:
 		{
 			for (int col = 0; col < COLS; col++)
 			{
-				cells[row][col] = std::make_unique<grid_cell>(
-					CELL_SIZE * col + x,
-					CELL_SIZE * row + y,
-					CELL_SIZE,
-					CELL_SIZE,
-					(m.map[row][col]) ? BLACK : RAYWHITE
-				);
+				if (m.map[row][col] == 0)
+				{
+					cells[row][col] = std::make_unique<tunnel>(
+						CELL_SIZE * col + x,
+						CELL_SIZE * row + y,
+						CELL_SIZE,
+						CELL_SIZE
+						);
+				}
+				else
+				{
+					cells[row][col] = std::make_unique<rock>(
+						CELL_SIZE * col + x,
+						CELL_SIZE * row + y,
+						CELL_SIZE,
+						CELL_SIZE,
+						true
+						);
+				}
 			}
 		}
 	}

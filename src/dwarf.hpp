@@ -6,26 +6,34 @@ enum class direction{UP=0, LEFT=1, DOWN=2, RIGHT=3};
 
 #include "grid.hpp"
 
-class dwarf : Rectangle
+class dwarf : public Rectangle
 {
+
 private:
-	int row;
-	int col;
-	direction _dir=RIGHT;
+	grid& _grid;
+	Color _color;
+	unsigned int _row = 0;
+	unsigned int _col = 0;
+	direction _dir = direction::RIGHT;
 	unsigned int _gold=0;
 	unsigned int _torches=20;
 	unsigned int _pickaxe=20;
 	unsigned int _food=10;
 	unsigned int _hp=10;
-	//unsigned int _sanity; optional
+	
+	grid_cell & block_in_front() const;//returns pointer to the block in front of dwarf
+
 public:
-	dwarf(float width, float height);//sets attributes base values
+	dwarf(grid& main_grid, float width, float height);//sets attributes base values
 
-	void set_start_pos(int x, int y);
+	void set_start_pos(int row, int col);
 
-	void move_up(MAP& map);
-	void move_left(MAP& map);
-	void move_down(MAP& map);
-	void move_right(MAP& map);
+	void move_up();
+	void move_left();
+	void move_down();
+	void move_right();
 
+	bool use_pickaxe();
+
+	void draw();
 };
