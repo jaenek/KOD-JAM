@@ -11,5 +11,5 @@ tunnel::tunnel(grid_assets& assets, float x, float y, float width, float height)
 void tunnel::draw()
 {
 	//DrawRectangleRec(*this, color);
-	DrawTexture(assets.textures[cell_type], x, y, WHITE);
+	DrawTextureEx(assets.textures[cell_type], { x, y }, 0, 3, WHITE);
 }

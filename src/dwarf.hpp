@@ -12,6 +12,7 @@ class dwarf : public Rectangle
 {
 
 private:
+	Texture texture;
 	grid& _grid; // referencja do klasy grid zawieraj¹cej tablice 2d wskaŸników do obiektów typu grid_cell
 	Color _color;
 	unsigned int _row = 0;

@@ -2,6 +2,7 @@
 
 dwarf::dwarf(grid& main_grid, float width, float height) : _grid(main_grid)
 {
+	this->texture = LoadTexture("assets/Ludzik.png");
 	this->width = width;
 	this->height = height;
 	this->_color = GREEN;
@@ -35,7 +36,6 @@ void dwarf::move_up(Camera2D & camera)
 	if (_dir != direction::UP)
 	{
 		_dir = direction::UP;
-		//obroc graficzke
 	}
 	else
 	{
@@ -53,7 +53,6 @@ void dwarf::move_left(Camera2D& camera)
 	if (_dir != direction::LEFT)
 	{
 		_dir = direction::LEFT;
-		//obroc graficzke
 	}
 	else
 	{
@@ -71,7 +70,6 @@ void dwarf::move_down(Camera2D& camera)
 	if (_dir != direction::DOWN)
 	{
 		_dir = direction::DOWN;
-		//obroc graficzke
 	}
 	else
 	{
@@ -89,7 +87,6 @@ void dwarf::move_right(Camera2D& camera)
 	if (_dir != direction::RIGHT)
 	{
 		_dir = direction::RIGHT;
-		// obroc graficzke
 	}
 	else
 	{
@@ -125,5 +122,11 @@ void dwarf::use_pickaxe()
 
 void dwarf::draw()
 {
-	DrawRectangleRec(*this, _color);
+	//DrawRectangleRec(*this, _color);
+	switch (_dir) {
+	case direction::UP: DrawTextureTiled(texture, { 67, 0, 24, 45 }, { x, y, 60, 113 }, {}, 0, 2.5, WHITE); break;
+	case direction::DOWN: DrawTextureTiled(texture, { 37, 0, 24, 45 }, { x, y, 60, 113 }, {}, 0, 2.5, WHITE); break;
+	case direction::LEFT: DrawTextureTiled(texture, { 0,0,24,45 }, { x, y, 60, 113 }, {}, 0, 2.5, WHITE); break;
+	case direction::RIGHT: DrawTextureTiled(texture, { 0,0,24,45 }, { x, y, 60, 113 }, {}, 0, 2.5, WHITE); break;
+	}
 }

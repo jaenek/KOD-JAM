@@ -36,6 +36,7 @@ public:
 				if (m.map[row][col] == map_object::BORDER)
 				{
 					cells[row][col] = std::make_unique<rock>(
+						assets,
 						CELL_SIZE * col + x,
 						CELL_SIZE * row + y,
 						CELL_SIZE,
