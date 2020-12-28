@@ -2,14 +2,14 @@
 
 #include <raylib.h>
 
+#include "window.hpp"
 #include "grid.hpp"
 #include "dwarf.hpp"
 
-class main_window
+
+
+class main_window : window
 {
 public:
 	void loop();
-
-private:
-	const int window_width = 1440, window_height = 1080;
 };

@@ -30,6 +30,6 @@ endif()
 file(GLOB PROJECT_SOURCES
 	src/*.cpp
 )
-add_executable(${PROJECT_NAME} ${PROJECT_SOURCES} "src/grid_assets.hpp" "src/grid_assets.cpp"  )
+add_executable(${PROJECT_NAME} ${PROJECT_SOURCES})
 target_include_directories(${PROJECT_NAME} PRIVATE ${raylib_SOURCE_DIR}/src)
 target_link_libraries(${PROJECT_NAME} PRIVATE project_options raylib)
