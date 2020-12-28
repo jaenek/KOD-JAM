@@ -1,16 +1,15 @@
 #include "map_generator.hpp"
 
-
 map_generator::map_generator(unsigned int seed)
 {
     srand(seed);
 
     //Wypelnij kamieniem / niczym / podloga
-    for (int x=0; x < rows; x++)
+    for (int x=0; x < ROWS; x++)
     {
-        for( int y = 0; y < columns; y++)
+        for( int y = 0; y < COLS; y++)
         {
-            if ( x == 0 || x == rows - 1 || y == 0 || y == columns - 1) {
+            if ( x == 0 || x == ROWS - 1 || y == 0 || y == COLS - 1) {
                 //Border
                 map[x][y] = 1;
             }
@@ -29,9 +28,9 @@ map_generator::map_generator(unsigned int seed)
        map_generator::smooth_map();
     }
 
-    for (int x=0; x < rows; x++)
+    for (int x=0; x < ROWS; x++)
     {
-        for (int y=0; y < columns; y++)
+        for (int y=0; y < COLS; y++)
         {
             map[x][y] = map2[x][y];
         }
@@ -40,9 +39,9 @@ map_generator::map_generator(unsigned int seed)
 
 void map_generator::smooth_map()
 {
-    for (int x=0; x < rows; x++)
+    for (int x=0; x < ROWS; x++)
     {
-        for (int y=0; y < columns; y++)
+        for (int y=0; y < COLS; y++)
         {
             int surround_walls = count_walls(x, y);
 
@@ -64,7 +63,7 @@ int map_generator::count_walls(int cordX, int cordY)
         for (int y=cordY-1; y <= cordY+1; y++)
         {
             //Jesli rozwazany "piksel" jest w dozwolonej lokalizacji
-            if (x >= 0 && x < rows && y >= 0 && y < columns)
+            if (x >= 0 && x < ROWS && y >= 0 && y < COLS)
             {
                 //Jesli rozwazany "piksel" nie jest tym, ktory jest w cordX i cordT
                 if (x != cordX || y != cordY)
