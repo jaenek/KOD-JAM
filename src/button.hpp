@@ -2,7 +2,6 @@
 #include <raylib.h>
 
 #include <functional>
-#include <string>
 #include "window.hpp"
 
 
@@ -43,4 +42,3 @@ public:
 
 	void draw();
 };
-
