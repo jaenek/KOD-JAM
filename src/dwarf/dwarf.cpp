@@ -8,20 +8,20 @@ dwarf::dwarf(grid& main_grid, float width, float height) : _grid(main_grid)
 	this->_color = GREEN;
 }
 
-grid_cell* dwarf::block_in_front(const grid& cells) const
+std::pair<int, int> dwarf::block_in_front(const grid& cells) const
 {
 	switch(_dir)
 	{
 		case (direction::UP):
-			return _grid.cells[_row - 1][_col].get();
+			return std::make_pair(_row - 1, _col);
 		case (direction::LEFT):
-			return _grid.cells[_row][_col - 1].get();
+			return std::make_pair(_row, _col - 1);
 		case (direction::DOWN):
-			return _grid.cells[_row + 1][_col].get();
+			return std::make_pair(_row + 1,_col);
 		case (direction::RIGHT):
-			return _grid.cells[_row][_col + 1].get();
+			return std::make_pair(_row, _col + 1);
 		default:
-			return nullptr;
+			return std::make_pair(0,0);
 	}
 }
 
@@ -41,7 +41,7 @@ void dwarf::move_up(Camera2D & camera)
 	}
 	else
 	{
-		if (_row != 0 && _grid.cells[_row - 1][_col]->blocked == false)
+		if (_grid.cells[_row - 1][_col]->blocked == false)
 		{
 			_row--;
 			y -= CELL_SIZE;
@@ -58,7 +58,7 @@ void dwarf::move_left(Camera2D& camera)
 	}
 	else
 	{
-		if (_col != 0 && _grid.cells[_row][_col - 1]->blocked == false)
+		if (_grid.cells[_row][_col - 1]->blocked == false)
 		{
 			_col--;
 			x -= CELL_SIZE;
@@ -75,7 +75,7 @@ void dwarf::move_down(Camera2D& camera)
 	}
 	else
 	{
-		if (_row != ROWS - 1 && _grid.cells[_row + 1][_col]->blocked == false)
+		if (_grid.cells[_row + 1][_col]->blocked == false)
 		{
 			_row++;
 			y += CELL_SIZE;
@@ -92,7 +92,7 @@ void dwarf::move_right(Camera2D& camera)
 	}
 	else
 	{
-		if (_col != COLS - 1 && _grid.cells[_row][_col + 1]->blocked == false)
+		if (_grid.cells[_row][_col + 1]->blocked == false)
 		{
 			_col++;
 			x += CELL_SIZE;
@@ -108,7 +108,8 @@ void dwarf::use_pickaxe()
 		return;
 	}
 
-	grid_cell* block = block_in_front(_grid);
+	auto coords = block_in_front(_grid);
+	auto block = _grid.cells[coords.first][coords.second].get();
 
 	if (block->destructable == true)
 	{
@@ -121,18 +122,22 @@ void dwarf::use_pickaxe()
 		{
 			dynamic_cast<rock *>(block)->break_wall();
 		}
+		_grid.cells[coords.first][coords.second].reset(new tunnel(block->x, block->y, block->width, block->height));
 	}
 }
 
 void dwarf::place_torch()
 {
-	if (!_torches && dynamic_cast<tunnel*>(_grid.cells[_row][_col].get())->has_torch == false)
+	if (auto block = dynamic_cast<tunnel*>(_grid.cells[_row][_col].get()); block)
 	{
-		//dzwieka dzwieka
-		return;
+		if (!_torches && block->has_torch == false)
+		{
+			//dzwieka dzwieka
+			return;
+		}
+		_torches--;
+		block->has_torch = true;
 	}
-	_torches--;
-	dynamic_cast<tunnel *>(_grid.cells[_row][_col].get())->has_torch = true;
 }
 
 void dwarf::draw()

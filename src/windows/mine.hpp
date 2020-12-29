@@ -18,7 +18,7 @@ private:
 	Camera2D camera{};
 
 public:
-	mine() : leave_mine(425, 450, 150, 75, "Back to town", 20, GRAY, LIGHTGRAY)
+	mine() : leave_mine(425, 450, 150, 75, "Back to town", 20, GRAY, LIGHTGRAY, BROWN, GRAY, DARKBROWN, GRAY)
 	{
 		mine_grid.transform(map_gen);
 
@@ -32,12 +32,12 @@ public:
 		for (auto const& [key, val] : assets)
 			grid_cell::textures[key] = LoadTexture(val.c_str());
 
-		player.set_start_pos(11, 55);
+		player.set_start_pos(15, 15);
 
 		camera.target = {player.x, player.y};
 		camera.offset = {static_cast<float>(window_width)/2, static_cast<float>(window_height)/2};
 		camera.rotation = 0.0f;
-		camera.zoom = 1.0f;
+		camera.zoom = 0.8f;
 	}
 
 	void update() {

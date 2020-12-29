@@ -1,6 +1,6 @@
 #pragma once
 
-#include <array>
+#include <vector>
 #include <memory>
 #include <raylib.h>
 
@@ -9,8 +9,10 @@
 #include "../cells/tunnel.hpp"
 #include "../cells/gold.hpp"
 #include "../cells/border.hpp"
+#include "../cells/entry.hpp"
+#include "../cells/exit.hpp"
 
-typedef std::array<std::array<std::unique_ptr<grid_cell>, COLS>, ROWS> MAP;
+typedef std::vector<std::vector<std::unique_ptr<grid_cell>>>MAP;
 
 const float CELL_SIZE = 60;
 
