@@ -30,6 +30,10 @@ private:
 	Color draw_button_color;
 	Color draw_text_color;
 
+
+public:
+	bool click_event = false;
+
 public:
 	button(float pos_x, float pos_y, float width, float height, const char* text, int font_size,
 		Color button_color, Color text_color, Color hover_button_color, Color hover_text_color,
