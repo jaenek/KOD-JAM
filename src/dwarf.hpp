@@ -23,8 +23,8 @@ private:
 	unsigned int _pickaxe=20;
 	unsigned int _food=10;
 	unsigned int _hp=10;
-	
-	grid_cell & block_in_front(const grid & cells) const;//returns pointer to the block in front of dwarf
+
+	grid_cell* block_in_front(const grid & cells) const;//returns pointer to the block in front of dwarf
 
 public:
 	dwarf(grid& main_grid, float width, float height);//sets attributes base values
