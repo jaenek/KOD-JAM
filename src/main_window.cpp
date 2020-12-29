@@ -8,11 +8,19 @@ void main_window::loop()
 	InitWindow(window_width, window_height, "kod-jam");
 	SetTargetFPS(60);
 
-	grid mine_grid(window_width, 0);
+	grid mine_grid(window_width);
 
 	map_generator map_gen(1000);
-	grid_assets assets;
-	mine_grid.transform(map_gen, assets);
+	mine_grid.transform(map_gen);
+
+	std::map<map_object, std::string> assets = {
+		{ map_object::TUNNEL, "assets/Podloga.png" },
+		{ map_object::ROCK, "assets/Sciana.png" },
+		{ map_object::GOLD_ORE, "assets/Zloto.png" },
+	};
+
+	for (auto const& [key, val] : assets)
+		grid_cell::textures[key] = LoadTexture(val.c_str());
 
 	dwarf player(mine_grid, 60, 90);
 	player.set_start_pos(11, 55);
@@ -42,7 +50,7 @@ void main_window::loop()
 			ClearBackground(RAYWHITE);
 			shop.draw();
 			EndDrawing();
-			
+
 		}
 		else if (draw_window == window_type::MINE) {
 			if (IsKeyPressed(KEY_W))
@@ -68,7 +76,7 @@ void main_window::loop()
 			mine.draw();
 			EndDrawing();
 		}
-		
+
 	}
 
 	CloseWindow();
