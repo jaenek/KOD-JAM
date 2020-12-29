@@ -10,8 +10,8 @@ tunnel::tunnel(float x, float y, float width, float height) : grid_cell(x, y, wi
 
 void tunnel::draw()
 {
-	if (!has_torch)
-		DrawTextureEx(textures[cell_type], { x, y }, 0, 3, WHITE);
-	else
+	DrawTextureEx(textures[cell_type], { x, y }, 0, 3, WHITE);
+
+	if (has_torch)
 		DrawRectangleRec(*this, YELLOW);
 }
