@@ -50,6 +50,24 @@ void grid::transform(map_generator&m)
 					CELL_SIZE
 					);
 			}
+			else if (m.map[row][col] == map_object::ENTRY)
+			{
+				cells[row][col] = std::make_unique<mine_entry>(
+					CELL_SIZE * col + x,
+					CELL_SIZE * row + y,
+					CELL_SIZE,
+					CELL_SIZE
+					);
+			}
+			else if (m.map[row][col] == map_object::EXIT)
+			{
+				cells[row][col] = std::make_unique<mine_exit>(
+					CELL_SIZE * col + x,
+					CELL_SIZE * row + y,
+					CELL_SIZE,
+					CELL_SIZE
+					);
+			}
 		}
 	}
 }
