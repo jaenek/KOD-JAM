@@ -8,20 +8,20 @@ dwarf::dwarf(grid& main_grid, float width, float height) : _grid(main_grid)
 	this->_color = GREEN;
 }
 
-grid_cell* dwarf::block_in_front(const grid& cells) const
+std::pair<int, int> dwarf::block_in_front(const grid& cells) const
 {
 	switch(_dir)
 	{
 		case (direction::UP):
-			return _grid.cells[_row - 1][_col].get();
+			return std::make_pair(_row - 1, _col);
 		case (direction::LEFT):
-			return _grid.cells[_row][_col - 1].get();
+			return std::make_pair(_row, _col - 1);
 		case (direction::DOWN):
-			return _grid.cells[_row + 1][_col].get();
+			return std::make_pair(_row + 1,_col);
 		case (direction::RIGHT):
-			return _grid.cells[_row][_col + 1].get();
+			return std::make_pair(_row, _col + 1);
 		default:
-			return nullptr;
+			return std::make_pair(0,0);
 	}
 }
 
@@ -108,7 +108,8 @@ void dwarf::use_pickaxe()
 		return;
 	}
 
-	grid_cell* block = block_in_front(_grid);
+	auto coords = block_in_front(_grid);
+	auto block = _grid.cells[coords.first][coords.second].get();
 
 	if (block->destructable == true)
 	{
@@ -121,27 +122,31 @@ void dwarf::use_pickaxe()
 		{
 			dynamic_cast<rock *>(block)->break_wall();
 		}
+		_grid.cells[coords.first][coords.second].reset(new tunnel(block->x, block->y, block->width, block->height));
 	}
 }
 
 void dwarf::place_torch()
 {
-	if (!_torches && dynamic_cast<tunnel*>(_grid.cells[_row][_col].get())->has_torch == false)
+	if (auto block = dynamic_cast<tunnel*>(_grid.cells[_row][_col].get()); block)
 	{
-		//dzwieka dzwieka
-		return;
+		if (!_torches && block->has_torch == false)
+		{
+			//dzwieka dzwieka
+			return;
+		}
+		_torches--;
+		block->has_torch = true;
 	}
-	_torches--;
-	dynamic_cast<tunnel *>(_grid.cells[_row][_col].get())->has_torch = true;
 }
 
 void dwarf::draw()
 {
 	//DrawRectangleRec(*this, _color);
 	switch (_dir) {
-	case direction::UP: DrawTextureTiled(texture, { 67, 0, 24, 45 }, { x, y, 60, 113 }, {}, 0, 2.5, WHITE); break;
-	case direction::DOWN: DrawTextureTiled(texture, { 37, 0, 24, 45 }, { x, y, 60, 113 }, {}, 0, 2.5, WHITE); break;
-	case direction::LEFT: DrawTextureTiled(texture, { 0,0,24,45 }, { x, y, 60, 113 }, {}, 0, 2.5, WHITE); break;
-	case direction::RIGHT: DrawTextureTiled(texture, { 0,0,24,45 }, { x, y, 60, 113 }, {}, 0, 2.5, WHITE); break;
+	case direction::UP:    DrawTextureTiled(texture, { 0, 108, 21, 36 }, { x+5, y, 50, 90 }, {}, 0, 2.5, WHITE); break;
+	case direction::DOWN:  DrawTextureTiled(texture, { 0, 72,  21, 36 }, { x+5, y, 50, 90 }, {}, 0, 2.5, WHITE); break;
+	case direction::LEFT:  DrawTextureTiled(texture, { 0, 36,  21, 36 }, { x+5, y, 50, 90 }, {}, 0, 2.5, WHITE); break;
+	case direction::RIGHT: DrawTextureTiled(texture, { 0, 0,   21, 36 }, { x+5, y, 50, 90 }, {}, 0, 2.5, WHITE); break;
 	}
 }

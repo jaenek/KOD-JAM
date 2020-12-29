@@ -18,7 +18,7 @@ private:
 	Camera2D camera{};
 
 public:
-	mine() : leave_mine(425, 450, 150, 75, "Back to town", 20, GRAY, LIGHTGRAY)
+	mine() : leave_mine(425, 450, 150, 75, "Back to town", 20, GRAY, LIGHTGRAY, BROWN, GRAY, DARKBROWN, GRAY)
 	{
 		mine_grid.transform(map_gen);
 
@@ -26,6 +26,7 @@ public:
 			{ map_object::TUNNEL, "assets/Podloga.png" },
 			{ map_object::ROCK, "assets/Sciana.png" },
 			{ map_object::GOLD_ORE, "assets/Zloto.png" },
+			{ map_object::TORCH, "assets/Pochodnia.png" },
 		};
 
 		for (auto const& [key, val] : assets)
