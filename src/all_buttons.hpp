@@ -3,16 +3,10 @@
 #include <raylib.h>
 #include "button.hpp"
 
-
 class go_shop_btn : public button
 {
 public:
-
-	go_shop_btn(float pos_x, float pos_y, float width, float height, const char* text, int font_size,
-		Color button_color, Color text_color) :
-		button(pos_x, pos_y, width, height, text, font_size, button_color, text_color)
-	{}
-
+	using button::button;
 
 	virtual void action() {
 
@@ -23,12 +17,7 @@ public:
 class leave_shop_btn : public button
 {
 public:
-
-	leave_shop_btn(float pos_x, float pos_y, float width, float height, const char* text, int font_size,
-		Color button_color, Color text_color) :
-		button(pos_x, pos_y, width, height, text, font_size, button_color, text_color)
-	{}
-
+	using button::button;
 
 	virtual void action() {
 		draw_window = window_type::TOWN;
@@ -38,12 +27,7 @@ public:
 class go_mine_btn : public button
 {
 public:
-
-	go_mine_btn(float pos_x, float pos_y, float width, float height, const char* text, int font_size,
-		Color button_color, Color text_color) :
-		button(pos_x, pos_y, width, height, text, font_size, button_color, text_color)
-	{}
-
+	using button::button;
 
 	virtual void action() {
 
@@ -54,12 +38,7 @@ public:
 class leave_mine_btn : public button
 {
 public:
-
-	leave_mine_btn(float pos_x, float pos_y, float width, float height, const char* text, int font_size,
-		Color button_color, Color text_color) :
-		button(pos_x, pos_y, width, height, text, font_size, button_color, text_color)
-	{}
-
+	using button::button;
 
 	virtual void action() {
 		draw_window = window_type::TOWN;
