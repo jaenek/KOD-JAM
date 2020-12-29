@@ -2,7 +2,7 @@
 #include <raylib.h>
 
 #include <functional>
-#include "window.hpp"
+#include "../windows/window.hpp"
 
 
 extern Vector2 mouse_position;

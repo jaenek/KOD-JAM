@@ -4,7 +4,7 @@
 #include <map>
 #include <string>
 
-#include "map_object.hpp"
+#include "../grid/map_object.hpp"
 
 class grid_cell : public Rectangle {
 public:

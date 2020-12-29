@@ -4,9 +4,9 @@ enum class direction{UP, LEFT, DOWN, RIGHT};
 
 #include <raylib.h>
 
-#include "grid.hpp"
-#include "gold.hpp"
-#include "rock.hpp"
+#include "../cells/gold.hpp"
+#include "../cells/rock.hpp"
+#include "../grid/grid.hpp"
 
 class dwarf : public Rectangle
 {

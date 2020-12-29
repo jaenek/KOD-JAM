@@ -5,7 +5,7 @@
 #include "window.hpp"
 #include "main_window.hpp"
 
-#include "all_buttons.hpp"
+#include "../buttons/all_buttons.hpp"
 
 class town : window
 {

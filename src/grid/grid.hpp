@@ -5,9 +5,9 @@
 #include <raylib.h>
 
 #include "map_generator.hpp"
-#include "rock.hpp"
-#include "tunnel.hpp"
-#include "gold.hpp"
+#include "../cells/rock.hpp"
+#include "../cells/tunnel.hpp"
+#include "../cells/gold.hpp"
 
 typedef std::array<std::array<std::unique_ptr<grid_cell>, COLS>, ROWS> MAP;
 

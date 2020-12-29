@@ -28,7 +28,8 @@ endif()
 
 # This is the main part:
 file(GLOB PROJECT_SOURCES
-	src/*.cpp
+	src/*/*.cpp
+	src/main.cpp
 )
 add_executable(${PROJECT_NAME} ${PROJECT_SOURCES})
 target_include_directories(${PROJECT_NAME} PRIVATE ${raylib_SOURCE_DIR}/src)

@@ -4,8 +4,9 @@
 
 #include "window.hpp"
 #include "main_window.hpp"
-
-#include "all_buttons.hpp"
+#include "../buttons/all_buttons.hpp"
+#include "../dwarf/dwarf.hpp"
+#include "../grid/grid.hpp"
 
 class mine : window
 {
