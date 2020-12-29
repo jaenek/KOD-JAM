@@ -2,23 +2,26 @@
 
 dwarf::dwarf(grid& main_grid, float width, float height) : _grid(main_grid)
 {
+	this->texture = LoadTexture("assets/Ludzik.png");
 	this->width = width;
 	this->height = height;
 	this->_color = GREEN;
 }
 
-grid_cell & dwarf::block_in_front(const grid& cells) const
+grid_cell* dwarf::block_in_front(const grid& cells) const
 {
 	switch(_dir)
 	{
 		case (direction::UP):
-			return *_grid.cells[_row - 1][_col];
+			return _grid.cells[_row - 1][_col].get();
 		case (direction::LEFT):
-			return *_grid.cells[_row][_col - 1];
+			return _grid.cells[_row][_col - 1].get();
 		case (direction::DOWN):
-			return *_grid.cells[_row + 1][_col];
+			return _grid.cells[_row + 1][_col].get();
 		case (direction::RIGHT):
-			return *_grid.cells[_row][_col + 1];
+			return _grid.cells[_row][_col + 1].get();
+		default:
+			return nullptr;
 	}
 }
 
@@ -30,12 +33,11 @@ void dwarf::set_start_pos(int row, int col)
 	y = row * CELL_SIZE + _grid.cells[0][0]->y - CELL_SIZE/2;
 }
 
-void dwarf::move_up()
+void dwarf::move_up(Camera2D & camera)
 {
 	if (_dir != direction::UP)
 	{
 		_dir = direction::UP;
-		//obroc graficzke
 	}
 	else
 	{
@@ -43,16 +45,16 @@ void dwarf::move_up()
 		{
 			_row--;
 			y -= CELL_SIZE;
+			camera.target = { x, y };
 		}
 	}
 }
 
-void dwarf::move_left()
+void dwarf::move_left(Camera2D& camera)
 {
 	if (_dir != direction::LEFT)
 	{
 		_dir = direction::LEFT;
-		//obroc graficzke
 	}
 	else
 	{
@@ -60,16 +62,16 @@ void dwarf::move_left()
 		{
 			_col--;
 			x -= CELL_SIZE;
+			camera.target = { x, y };
 		}
 	}
 }
 
-void dwarf::move_down()
+void dwarf::move_down(Camera2D& camera)
 {
 	if (_dir != direction::DOWN)
 	{
 		_dir = direction::DOWN;
-		//obroc graficzke
 	}
 	else
 	{
@@ -77,16 +79,16 @@ void dwarf::move_down()
 		{
 			_row++;
 			y += CELL_SIZE;
+			camera.target = { x, y };
 		}
 	}
 }
 
-void dwarf::move_right()
+void dwarf::move_right(Camera2D& camera)
 {
 	if (_dir != direction::RIGHT)
 	{
 		_dir = direction::RIGHT;
-		// obroc graficzke
 	}
 	else
 	{
@@ -94,6 +96,7 @@ void dwarf::move_right()
 		{
 			_col++;
 			x += CELL_SIZE;
+			camera.target = { x, y };
 		}
 	}
 }
@@ -105,21 +108,29 @@ void dwarf::use_pickaxe()
 		return;
 	}
 
-	if (block_in_front(_grid).destructable == true)
+	grid_cell* block = block_in_front(_grid);
+
+	if (block->destructable == true)
 	{
 		_pickaxe--;
-		if (block_in_front(_grid).cell_type == map_object::GOLD_ORE)
+		if (block->cell_type == map_object::GOLD_ORE)
 		{
-			_gold += dynamic_cast<gold *>(&block_in_front(_grid))->dig_gold();
+			_gold += dynamic_cast<gold *>(block)->dig_gold();
 		}
 		else
 		{
-			dynamic_cast<rock *>(&block_in_front(_grid))->break_wall();
+			dynamic_cast<rock *>(block)->break_wall();
 		}
 	}
 }
 
 void dwarf::draw()
 {
-	DrawRectangleRec(*this, _color);
+	//DrawRectangleRec(*this, _color);
+	switch (_dir) {
+	case direction::UP: DrawTextureTiled(texture, { 67, 0, 24, 45 }, { x, y, 60, 113 }, {}, 0, 2.5, WHITE); break;
+	case direction::DOWN: DrawTextureTiled(texture, { 37, 0, 24, 45 }, { x, y, 60, 113 }, {}, 0, 2.5, WHITE); break;
+	case direction::LEFT: DrawTextureTiled(texture, { 0,0,24,45 }, { x, y, 60, 113 }, {}, 0, 2.5, WHITE); break;
+	case direction::RIGHT: DrawTextureTiled(texture, { 0,0,24,45 }, { x, y, 60, 113 }, {}, 0, 2.5, WHITE); break;
+	}
 }

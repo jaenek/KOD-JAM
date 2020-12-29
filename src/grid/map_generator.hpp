@@ -19,7 +19,7 @@ class map_generator
         map_generator(unsigned int seed);
 
     private:
-        const static int gold_chance = 10;
+        const static int gold_chance = 2;
         const int filler_probability = 55;
         const int smoothings = 7;
         unsigned int seed;

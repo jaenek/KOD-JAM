@@ -1,6 +1,6 @@
 #include "gold.hpp"
 
-gold::gold(grid_assets& assets, float x, float y, float width, float height) : grid_cell(assets, x, y, width, height)
+gold::gold(float x, float y, float width, float height) : grid_cell(x, y, width, height)
 {
 	color = YELLOW;
 	destructable = true;
@@ -11,15 +11,15 @@ gold::gold(grid_assets& assets, float x, float y, float width, float height) : g
 void gold::draw()
 {
 	//DrawRectangleRec(*this, color);
-	DrawTexture(assets.textures[cell_type], x, y, WHITE);
+	DrawTextureEx(textures[cell_type], { x, y }, 0, 3, WHITE);
 }
 
 int gold::dig_gold()
 {
 	color = WHITE;
+	cell_type = map_object::TUNNEL;
 	destructable = false;
 	blocked = false;
-	cell_type = map_object::TUNNEL;
 
 	return rand() % max_gold + min_gold;
 }
