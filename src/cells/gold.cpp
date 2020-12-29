@@ -10,15 +10,16 @@ gold::gold(float x, float y, float width, float height) : grid_cell(x, y, width,
 
 void gold::draw()
 {
-	DrawRectangleRec(*this, color);
+	//DrawRectangleRec(*this, color);
+	DrawTextureEx(textures[cell_type], { x, y }, 0, 3, WHITE);
 }
 
 int gold::dig_gold()
 {
 	color = WHITE;
+	cell_type = map_object::TUNNEL;
 	destructable = false;
 	blocked = false;
-	cell_type = map_object::TUNNEL;
 
 	return rand() % max_gold + min_gold;
 }

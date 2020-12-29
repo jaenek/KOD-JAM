@@ -5,7 +5,7 @@
 class rock : public grid_cell
 {
 public:
-	rock(float x, float y, float width, float height, bool destruct);
+	rock(float x, float y, float width, float height);
 	virtual void draw() override;
 	void break_wall();
 };
