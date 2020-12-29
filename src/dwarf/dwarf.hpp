@@ -7,6 +7,7 @@ enum class direction{UP, LEFT, DOWN, RIGHT};
 #include "../cells/gold.hpp"
 #include "../cells/rock.hpp"
 #include "../grid/grid.hpp"
+#include "../windows/window.hpp"
 
 class dwarf : public Rectangle
 {
@@ -38,6 +39,9 @@ public:
 
 	void use_pickaxe();
 	void place_torch();
+	void leave_mine(); //interaction with mine_entry
+	void exit_mine(Camera2D& camera); //interaction with mine_exit
+
 
 	void draw();
 };
