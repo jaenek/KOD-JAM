@@ -5,7 +5,7 @@
 #include "window.hpp"
 #include "main_window.hpp"
 
-#include "button.hpp"
+#include "all_buttons.hpp"
 
 class mine : window
 {
