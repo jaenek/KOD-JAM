@@ -1,6 +1,6 @@
 #pragma once
 
-enum class direction{UP=0, LEFT=1, DOWN=2, RIGHT=3};
+enum class direction{UP, LEFT, DOWN, RIGHT};
 
 #include <raylib.h>
 
@@ -23,8 +23,8 @@ private:
 	unsigned int _pickaxe=20;
 	unsigned int _food=10;
 	unsigned int _hp=10;
-	
-	grid_cell & block_in_front(const grid & cells) const;//returns pointer to the block in front of dwarf
+
+	grid_cell* block_in_front(const grid & cells) const;//returns pointer to the block in front of dwarf
 
 public:
 	dwarf(grid& main_grid, float width, float height);//sets attributes base values

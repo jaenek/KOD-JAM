@@ -5,8 +5,9 @@
 #include "window.hpp"
 #include "grid.hpp"
 #include "dwarf.hpp"
-
-
+#include "town.hpp"
+#include "shop.hpp"
+#include "mine.hpp"
 
 class main_window : window
 {

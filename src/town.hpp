@@ -5,13 +5,7 @@
 #include "window.hpp"
 #include "main_window.hpp"
 
-//#include "button.hpp"
 #include "all_buttons.hpp"
-#include <iostream>
-
-
-
-
 
 class town : window
 {
@@ -24,10 +18,14 @@ public:
 		go_mine(window_width-200, 450, 150, 75, "Mine", 20, GRAY, LIGHTGRAY) {}
 
 
-	void draw() {
+	void update()
+	{
 		go_shop.update();
 		go_mine.update();
-		std::cout << mouse_position.x << '\t' << mouse_position.y << std::endl;
+	}
+
+	void draw()
+	{
 		go_shop.draw();
 		go_mine.draw();
 

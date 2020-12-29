@@ -8,18 +8,20 @@ dwarf::dwarf(grid& main_grid, float width, float height) : _grid(main_grid)
 	this->_color = GREEN;
 }
 
-grid_cell & dwarf::block_in_front(const grid& cells) const
+grid_cell* dwarf::block_in_front(const grid& cells) const
 {
 	switch(_dir)
 	{
 		case (direction::UP):
-			return *_grid.cells[_row - 1][_col];
+			return _grid.cells[_row - 1][_col].get();
 		case (direction::LEFT):
-			return *_grid.cells[_row][_col - 1];
+			return _grid.cells[_row][_col - 1].get();
 		case (direction::DOWN):
-			return *_grid.cells[_row + 1][_col];
+			return _grid.cells[_row + 1][_col].get();
 		case (direction::RIGHT):
-			return *_grid.cells[_row][_col + 1];
+			return _grid.cells[_row][_col + 1].get();
+		default:
+			return nullptr;
 	}
 }
 
@@ -106,16 +108,18 @@ void dwarf::use_pickaxe()
 		return;
 	}
 
-	if (block_in_front(_grid).destructable == true)
+	grid_cell* block = block_in_front(_grid);
+
+	if (block->destructable == true)
 	{
 		_pickaxe--;
-		if (block_in_front(_grid).cell_type == map_object::GOLD_ORE)
+		if (block->cell_type == map_object::GOLD_ORE)
 		{
-			_gold += dynamic_cast<gold *>(&block_in_front(_grid))->dig_gold();
+			_gold += dynamic_cast<gold *>(block)->dig_gold();
 		}
 		else
 		{
-			dynamic_cast<rock *>(&block_in_front(_grid))->break_wall();
+			dynamic_cast<rock *>(block)->break_wall();
 		}
 	}
 }
