@@ -19,7 +19,8 @@ private:
 
 public:
 	button(float pos_x, float pos_y, float width, float height, const char* text, int font_size,
-		Color button_color, Color text_color) {
+		Color button_color, Color text_color)
+	{
 
 		this->text = text;
 		this->font_size = font_size;

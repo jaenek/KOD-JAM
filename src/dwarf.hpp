@@ -1,6 +1,6 @@
 #pragma once
 
-enum class direction{UP=0, LEFT=1, DOWN=2, RIGHT=3};
+enum class direction{UP, LEFT, DOWN, RIGHT};
 
 #include <raylib.h>
 
