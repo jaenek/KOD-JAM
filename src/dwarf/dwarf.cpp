@@ -1,5 +1,7 @@
 #include "dwarf.hpp"
 
+extern window_type draw_window;
+
 dwarf::dwarf(grid& main_grid, float width, float height) : _grid(main_grid)
 {
 	this->texture = LoadTexture("assets/Ludzik.png");
@@ -148,5 +150,29 @@ void dwarf::draw()
 	case direction::DOWN:  DrawTextureTiled(texture, { 0, 72,  21, 36 }, { x+5, y, 50, 90 }, {}, 0, 2.5, WHITE); break;
 	case direction::LEFT:  DrawTextureTiled(texture, { 0, 36,  21, 36 }, { x+5, y, 50, 90 }, {}, 0, 2.5, WHITE); break;
 	case direction::RIGHT: DrawTextureTiled(texture, { 0, 0,   21, 36 }, { x+5, y, 50, 90 }, {}, 0, 2.5, WHITE); break;
+	}
+}
+
+void dwarf::leave_mine()
+{
+	if (_grid.cells[_row][_col].get()->cell_type == map_object::ENTRY)
+	{
+		draw_window = window_type::TOWN;
+		set_start_pos(map_generator::ROWS / 2, map_generator::COLS / 2);
+	}
+}
+
+void dwarf::exit_mine(Camera2D& camera)
+{
+	if (_grid.cells[_row][_col].get()->cell_type == map_object::EXIT)
+	{
+		map_generator::ROWS += 30;
+		map_generator::COLS += 30;
+
+		map_generator new_map(1001);
+		_grid.transform(new_map);
+
+		set_start_pos(map_generator::ROWS / 2, map_generator::COLS / 2);
+		camera.target = {x, y};
 	}
 }

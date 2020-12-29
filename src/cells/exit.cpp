@@ -5,7 +5,7 @@ mine_exit::mine_exit(float x, float y, float width, float height) : grid_cell(x,
 	this->color = GREEN;
 	destructable = false;
 	blocked = false;
-	cell_type = map_object::ENTRY;
+	cell_type = map_object::EXIT;
 }
 
 void mine_exit::draw()

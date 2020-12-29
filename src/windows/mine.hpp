@@ -54,6 +54,10 @@ public:
 			player.use_pickaxe();
 		if (IsKeyPressed(KEY_T))
 			player.place_torch();
+		if (IsKeyPressed(KEY_E))
+			player.exit_mine(camera);
+		if (IsKeyPressed(KEY_L))
+			player.leave_mine();
 
 		leave_mine.update();
 	}
