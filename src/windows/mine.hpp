@@ -18,7 +18,7 @@ private:
 	Camera2D camera{};
 
 public:
-	mine() : leave_mine(425, 450, 150, 75, "Back to town", 20, GRAY, LIGHTGRAY)
+	mine() : leave_mine(425, 450, 150, 75, "Back to town", 20, GRAY, LIGHTGRAY, BROWN, GRAY, DARKBROWN, GRAY)
 	{
 		mine_grid.transform(map_gen);
 

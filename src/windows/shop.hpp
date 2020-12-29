@@ -13,7 +13,7 @@ private:
 	leave_shop_btn leave_shop;
 
 public:
-	shop() : leave_shop(425, 450, 150, 75, "Back to town", 20, GRAY, LIGHTGRAY){}
+	shop() : leave_shop(425, 450, 150, 75, "Back to town", 20, GRAY, LIGHTGRAY, BROWN, GRAY, DARKBROWN, GRAY){}
 
 	void update()
 	{
