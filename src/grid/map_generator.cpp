@@ -1,8 +1,19 @@
 #include "map_generator.hpp"
 
+int map_generator::ROWS = 30;
+int map_generator::COLS = 30;
+
 map_generator::map_generator(unsigned int seed)
 {
     srand(seed);
+
+    map.resize(ROWS);
+    map2.resize(ROWS);
+    for (int i = 0; i < ROWS; i++)
+    {
+        map[i].resize(COLS);
+        map2[i].resize(COLS);
+    }
 
     //Wypelnij kamieniem / niczym / podloga
     for (int x=0; x < ROWS; x++)

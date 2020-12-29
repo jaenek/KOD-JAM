@@ -7,9 +7,17 @@ enum class direction{UP, LEFT, DOWN, RIGHT};
 #include "../cells/gold.hpp"
 #include "../cells/rock.hpp"
 #include "../grid/grid.hpp"
+#include "../windows/window.hpp"
+
+
 
 class dwarf : public Rectangle
 {
+
+
+friend class shop;
+friend class shop_buttons;
+		
 
 private:
 	Texture texture;
@@ -18,7 +26,7 @@ private:
 	unsigned int _row = 0;
 	unsigned int _col = 0;
 	direction _dir = direction::RIGHT;
-	unsigned int _gold=0;
+	unsigned int _gold=5;
 	unsigned int _torches=10;
 	unsigned int _pickaxe=20;
 	unsigned int _food=10;
@@ -38,6 +46,9 @@ public:
 
 	void use_pickaxe();
 	void place_torch();
+	void leave_mine(); //interaction with mine_entry
+	void exit_mine(Camera2D& camera); //interaction with mine_exit
+
 
 	void draw();
 };

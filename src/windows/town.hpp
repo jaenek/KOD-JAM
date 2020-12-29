@@ -5,7 +5,7 @@
 #include "window.hpp"
 #include "main_window.hpp"
 
-#include "../buttons/all_buttons.hpp"
+#include "../buttons/navigate_buttons.hpp"
 
 class town : window
 {
@@ -14,8 +14,7 @@ private:
 	go_mine_btn go_mine;
 
 
-	//Image image = LoadImage("assets/Miasto-Dzien.png");   // Loaded in CPU memory (RAM)
-	Image image = LoadImage("assets/Miasto-Noc.png");   // Loaded in CPU memory (RAM)
+	Image image = LoadImage("assets/Miasto-Dzien.png");   // Loaded in CPU memory (RAM)
 	Texture2D texture = LoadTextureFromImage(image);
 	
 public:
