@@ -5,7 +5,6 @@
 #include <raylib.h>
 
 #include "map_generator.hpp"
-#include "grid_assets.hpp"
 #include "rock.hpp"
 #include "tunnel.hpp"
 #include "gold.hpp"

@@ -5,8 +5,6 @@
 #include <string>
 
 #include "map_object.hpp"
-#include "grid_assets.hpp"
-
 
 class grid_cell : public Rectangle {
 public:
