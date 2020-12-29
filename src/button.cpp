@@ -1,8 +1,5 @@
 #include "button.hpp"
 
-#include <iostream>
-
-
 void button::action()
 {
 }
@@ -25,7 +22,7 @@ void button::update()
 			button_color = BROWN;
 
 		//click event
-		if (IsMouseButtonReleased(MOUSE_LEFT_BUTTON)) {			
+		if (IsMouseButtonReleased(MOUSE_LEFT_BUTTON)) {
 			action();
 		}
 
