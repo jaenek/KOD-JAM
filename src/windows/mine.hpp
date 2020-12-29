@@ -51,6 +51,8 @@ public:
 
 		if (IsKeyPressed(KEY_SPACE))
 			player.use_pickaxe();
+		if (IsKeyPressed(KEY_T))
+			player.place_torch();
 
 		leave_mine.update();
 	}
