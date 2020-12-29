@@ -4,12 +4,14 @@
 
 #include "window.hpp"
 #include "main_window.hpp"
-#include "../buttons/all_buttons.hpp"
+#include "../buttons/navigate_buttons.hpp"
 #include "../dwarf/dwarf.hpp"
 #include "../grid/grid.hpp"
 
 class mine : window
 {
+friend class shop;
+
 private:
 	leave_mine_btn leave_mine;
 	grid mine_grid{window_width};
@@ -39,6 +41,13 @@ public:
 		camera.rotation = 0.0f;
 		camera.zoom = 0.8f;
 	}
+
+	
+	dwarf& get_dwarf() {
+
+		return player;
+	}
+
 
 	void update() {
 		if (IsKeyPressed(KEY_W))

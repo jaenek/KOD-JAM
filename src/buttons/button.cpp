@@ -41,7 +41,7 @@ bool button::is_mouse_on()
 
 void button::update()
 {
-
+	click_event = false;
 	if (is_mouse_on()) {
 
 		if (IsMouseButtonDown(MOUSE_LEFT_BUTTON)) {
@@ -57,6 +57,7 @@ void button::update()
 
 		//click event
 		if (IsMouseButtonReleased(MOUSE_LEFT_BUTTON)) {
+			click_event = true;
 			action();
 		}
 

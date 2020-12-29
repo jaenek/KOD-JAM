@@ -6,8 +6,10 @@ void main_window::loop()
 	SetTargetFPS(60);
 
 	town town;
-	shop shop;
 	mine mine;
+	shop shop(mine.get_dwarf());
+	
+	
 
 	bool quit = false;
 	while (!WindowShouldClose() & !quit) {
