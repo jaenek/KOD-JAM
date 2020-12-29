@@ -1,9 +1,9 @@
 #include "rock.hpp"
 
-rock::rock(float x, float y, float width, float height, bool destruct) : grid_cell(x, y, width, height)
+rock::rock(float x, float y, float width, float height) : grid_cell(x, y, width, height)
 {
 	this->color = BLACK;
-	destructable = destruct;
+	destructable = true;
 	blocked = true;
 	cell_type = map_object::ROCK;
 }

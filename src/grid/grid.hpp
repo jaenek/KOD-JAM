@@ -8,6 +8,7 @@
 #include "../cells/rock.hpp"
 #include "../cells/tunnel.hpp"
 #include "../cells/gold.hpp"
+#include "../cells/border.hpp"
 
 typedef std::array<std::array<std::unique_ptr<grid_cell>, COLS>, ROWS> MAP;
 

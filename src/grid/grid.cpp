@@ -16,12 +16,11 @@ void grid::transform(map_generator&m)
 		{
 			if (m.map[row][col] == map_object::BORDER)
 			{
-				cells[row][col] = std::make_unique<rock>(
+				cells[row][col] = std::make_unique<border>(
 					CELL_SIZE * col + x,
 					CELL_SIZE * row + y,
 					CELL_SIZE,
-					CELL_SIZE,
-					false
+					CELL_SIZE
 					);
 			}
 			else if (m.map[row][col] == map_object::TUNNEL)
@@ -39,8 +38,7 @@ void grid::transform(map_generator&m)
 					CELL_SIZE * col + x,
 					CELL_SIZE * row + y,
 					CELL_SIZE,
-					CELL_SIZE,
-					true
+					CELL_SIZE
 					);
 			}
 			else if (m.map[row][col] == map_object::GOLD_ORE)
