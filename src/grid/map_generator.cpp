@@ -17,9 +17,11 @@ map_generator::map_generator(unsigned int seed)
             else
             {
                 //Rock
-                if (rand()%100 <= filler_probability) map[x][y] = map_object::ROCK;
+                if (rand()%100 <= filler_probability) 
+                    map[x][y] = map_object::ROCK;
                 //Tunnel
-                else map[x][y] = map_object::TUNNEL;
+                else 
+                    map[x][y] = map_object::TUNNEL;
             }
     
         }
@@ -39,7 +41,9 @@ map_generator::map_generator(unsigned int seed)
         }
     }
 
+    map[ROWS/2][COLS/2] = map_object::ENTRY;
     add_gold();
+    add_exit();
 }
 
 void map_generator::smooth_map()
@@ -99,5 +103,46 @@ void map_generator::add_gold()
                 map[x][y] = map_object::GOLD_ORE;
             }
         }
+    }
+}
+
+void map_generator::add_exit()
+{
+    int rand_int = rand() % 4;
+    int posX, posY;
+
+    switch (rand_int)
+    {
+        case 0:
+            posX = rand() % 5 + 1;
+            posY = rand() % (COLS - 2) + 1;
+            map[posX][posY] = map_object::EXIT;
+            break;
+        case 1:
+            posX = rand() % (ROWS - 2) + 1;
+            posY = rand() % 5 + 1;
+            map[posX][posY] = map_object::EXIT;
+            break;
+        case 2:
+            posX = ROWS - 1 - (rand() % 5 + 1);
+            posY = rand() % (COLS - 2) + 1;
+            map[posX][posY] = map_object::EXIT;
+            break;
+        case 3:
+            posX = rand() % (ROWS - 2) + 1;
+            posY = COLS - 1 - (rand() % 5 + 1);
+            map[posX][posY] = map_object::EXIT;
+            break;
+
+            for (int x = posX - 1; x <= posX + 1; x++)
+            {
+                for (int y = posY - 1; y <= posY + 1; y++)
+                {
+                    if (x > 0 && x < ROWS - 1 && y > 0 && y < COLS - 1 && x != posX && x != posY)
+                    {
+                        map[x][y] = map_object::TUNNEL;
+                    }
+                }
+            }
     }
 }

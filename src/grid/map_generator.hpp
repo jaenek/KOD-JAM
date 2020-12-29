@@ -7,7 +7,7 @@
 
 #include "map_object.hpp"
 
-const int ROWS = 30;
+const int ROWS = 100;
 const int COLS = 100;
 
 
@@ -26,5 +26,6 @@ class map_generator
         int count_walls(int cordX, int cordY);
         void smooth_map();
         void add_gold();
+        void add_exit();
 
 };
