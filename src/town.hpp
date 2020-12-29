@@ -18,9 +18,14 @@ public:
 		go_mine(window_width-200, 450, 150, 75, "Mine", 20, GRAY, LIGHTGRAY) {}
 
 
-	void draw() {
+	void update()
+	{
 		go_shop.update();
 		go_mine.update();
+	}
+
+	void draw()
+	{
 		go_shop.draw();
 		go_mine.draw();
 
