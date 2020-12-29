@@ -41,7 +41,7 @@ void dwarf::move_up(Camera2D & camera)
 	}
 	else
 	{
-		if (_row != 0 && _grid.cells[_row - 1][_col]->blocked == false)
+		if (_grid.cells[_row - 1][_col]->blocked == false)
 		{
 			_row--;
 			y -= CELL_SIZE;
@@ -58,7 +58,7 @@ void dwarf::move_left(Camera2D& camera)
 	}
 	else
 	{
-		if (_col != 0 && _grid.cells[_row][_col - 1]->blocked == false)
+		if (_grid.cells[_row][_col - 1]->blocked == false)
 		{
 			_col--;
 			x -= CELL_SIZE;
@@ -75,7 +75,7 @@ void dwarf::move_down(Camera2D& camera)
 	}
 	else
 	{
-		if (_row != ROWS - 1 && _grid.cells[_row + 1][_col]->blocked == false)
+		if (_grid.cells[_row + 1][_col]->blocked == false)
 		{
 			_row++;
 			y += CELL_SIZE;
@@ -92,7 +92,7 @@ void dwarf::move_right(Camera2D& camera)
 	}
 	else
 	{
-		if (_col != COLS - 1 && _grid.cells[_row][_col + 1]->blocked == false)
+		if (_grid.cells[_row][_col + 1]->blocked == false)
 		{
 			_col++;
 			x += CELL_SIZE;

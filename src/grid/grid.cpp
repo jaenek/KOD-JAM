@@ -2,17 +2,22 @@
 
 grid::grid(int window_width)
 {
-	width = COLS * CELL_SIZE;
-	height = ROWS * CELL_SIZE;
+	width = map_generator::COLS * CELL_SIZE;
+	height = map_generator::ROWS * CELL_SIZE;
 	x = (window_width - width) / 2;
 	y = 0;
 }
 
 void grid::transform(map_generator&m)
 {
-	for (int row = 0; row < ROWS; row++)
+	cells.resize(map_generator::ROWS);
+	for (int i = 0; i < map_generator::ROWS; i++)
 	{
-		for (int col = 0; col < COLS; col++)
+		cells[i].resize(map_generator::COLS);
+	}
+	for (int row = 0; row < map_generator::ROWS; row++)
+	{
+		for (int col = 0; col < map_generator::COLS; col++)
 		{
 			if (m.map[row][col] == map_object::BORDER)
 			{

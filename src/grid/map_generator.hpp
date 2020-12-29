@@ -3,20 +3,18 @@
 #include <iostream>
 #include <cstdlib>
 #include <ctime>
-#include <array>
+#include <vector>
 
 #include "map_object.hpp"
-
-const int ROWS = 100;
-const int COLS = 100;
-
 
 class map_generator
 {
     public:
-        std::array<std::array<map_object, COLS>, ROWS> map{}; // 0-tunnel 1-rock, 2-border, 3-gold
-        std::array<std::array<map_object, COLS>, ROWS> map2{};
+        std::vector<std::vector<map_object>>map;
+        std::vector<std::vector<map_object>>map2;
         map_generator(unsigned int seed);
+        static int ROWS;
+        static int COLS;
 
     private:
         const static int gold_chance = 2;
