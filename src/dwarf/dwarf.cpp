@@ -139,9 +139,9 @@ void dwarf::draw()
 {
 	//DrawRectangleRec(*this, _color);
 	switch (_dir) {
-	case direction::UP: DrawTextureTiled(texture, { 67, 0, 24, 45 }, { x, y, 60, 113 }, {}, 0, 2.5, WHITE); break;
-	case direction::DOWN: DrawTextureTiled(texture, { 37, 0, 24, 45 }, { x, y, 60, 113 }, {}, 0, 2.5, WHITE); break;
-	case direction::LEFT: DrawTextureTiled(texture, { 0,0,24,45 }, { x, y, 60, 113 }, {}, 0, 2.5, WHITE); break;
-	case direction::RIGHT: DrawTextureTiled(texture, { 0,0,24,45 }, { x, y, 60, 113 }, {}, 0, 2.5, WHITE); break;
+	case direction::UP:    DrawTextureTiled(texture, { 0, 108, 21, 36 }, { x+5, y, 50, 90 }, {}, 0, 2.5, WHITE); break;
+	case direction::DOWN:  DrawTextureTiled(texture, { 0, 72,  21, 36 }, { x+5, y, 50, 90 }, {}, 0, 2.5, WHITE); break;
+	case direction::LEFT:  DrawTextureTiled(texture, { 0, 36,  21, 36 }, { x+5, y, 50, 90 }, {}, 0, 2.5, WHITE); break;
+	case direction::RIGHT: DrawTextureTiled(texture, { 0, 0,   21, 36 }, { x+5, y, 50, 90 }, {}, 0, 2.5, WHITE); break;
 	}
 }
