@@ -124,6 +124,17 @@ void dwarf::use_pickaxe()
 	}
 }
 
+void dwarf::place_torch()
+{
+	if (!_torches && dynamic_cast<tunnel*>(_grid.cells[_row][_col].get())->has_torch == false)
+	{
+		//dzwieka dzwieka
+		return;
+	}
+	_torches--;
+	dynamic_cast<tunnel *>(_grid.cells[_row][_col].get())->has_torch = true;
+}
+
 void dwarf::draw()
 {
 	//DrawRectangleRec(*this, _color);

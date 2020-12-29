@@ -19,7 +19,7 @@ private:
 	unsigned int _col = 0;
 	direction _dir = direction::RIGHT;
 	unsigned int _gold=0;
-	unsigned int _torches=20;
+	unsigned int _torches=10;
 	unsigned int _pickaxe=20;
 	unsigned int _food=10;
 	unsigned int _hp=10;
@@ -37,6 +37,7 @@ public:
 	void move_right(Camera2D& camera);
 
 	void use_pickaxe();
+	void place_torch();
 
 	void draw();
 };
