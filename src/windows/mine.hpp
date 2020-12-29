@@ -34,12 +34,12 @@ public:
 		for (auto const& [key, val] : assets)
 			grid_cell::textures[key] = LoadTexture(val.c_str());
 
-		player.set_start_pos(50, 50);
+		player.set_start_pos(15, 15);
 
 		camera.target = {player.x, player.y};
 		camera.offset = {static_cast<float>(window_width)/2, static_cast<float>(window_height)/2};
 		camera.rotation = 0.0f;
-		camera.zoom = 0.5f;
+		camera.zoom = 0.8f;
 	}
 
 	
@@ -63,6 +63,10 @@ public:
 			player.use_pickaxe();
 		if (IsKeyPressed(KEY_T))
 			player.place_torch();
+		if (IsKeyPressed(KEY_E))
+			player.exit_mine(camera);
+		if (IsKeyPressed(KEY_L))
+			player.leave_mine();
 
 		leave_mine.update();
 	}
