@@ -6,8 +6,6 @@
 #include "grid.hpp"
 #include "dwarf.hpp"
 
-
-
 class main_window : window
 {
 public:
