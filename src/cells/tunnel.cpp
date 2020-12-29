@@ -13,5 +13,5 @@ void tunnel::draw()
 	DrawTextureEx(textures[cell_type], { x, y }, 0, 3, WHITE);
 
 	if (has_torch)
-		DrawRectangleRec(*this, YELLOW);
+		DrawTextureEx(textures[map_object::TORCH], { x, y }, 0, 3, WHITE);
 }

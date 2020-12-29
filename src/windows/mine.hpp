@@ -26,6 +26,7 @@ public:
 			{ map_object::TUNNEL, "assets/Podloga.png" },
 			{ map_object::ROCK, "assets/Sciana.png" },
 			{ map_object::GOLD_ORE, "assets/Zloto.png" },
+			{ map_object::TORCH, "assets/Pochodnia.png" },
 		};
 
 		for (auto const& [key, val] : assets)
