@@ -54,6 +54,16 @@ map_generator::map_generator(unsigned int seed)
     }
 
     map[ROWS/2][COLS/2] = map_object::ENTRY;
+    for (int x = COLS/2 - 1; x <= COLS/2 + 1; x++)
+    {
+        for (int y = ROWS/2 - 1; y <= ROWS/2 + 1; y++)
+        {
+            if (x != COLS/2 || y != ROWS/2)
+            {
+                map[x][y] = map_object::TUNNEL;
+            }
+        }
+    }
     add_gold();
     add_exit();
 }
@@ -128,33 +138,30 @@ void map_generator::add_exit()
         case 0:
             posX = rand() % 5 + 1;
             posY = rand() % (COLS - 2) + 1;
-            map[posX][posY] = map_object::EXIT;
             break;
         case 1:
             posX = rand() % (ROWS - 2) + 1;
             posY = rand() % 5 + 1;
-            map[posX][posY] = map_object::EXIT;
             break;
         case 2:
             posX = ROWS - 1 - (rand() % 5 + 1);
             posY = rand() % (COLS - 2) + 1;
-            map[posX][posY] = map_object::EXIT;
             break;
         case 3:
             posX = rand() % (ROWS - 2) + 1;
             posY = COLS - 1 - (rand() % 5 + 1);
-            map[posX][posY] = map_object::EXIT;
             break;
 
             for (int x = posX - 1; x <= posX + 1; x++)
             {
                 for (int y = posY - 1; y <= posY + 1; y++)
                 {
-                    if (x > 0 && x < ROWS - 1 && y > 0 && y < COLS - 1 && x != posX && x != posY)
+                    if (x > 0 && x < ROWS - 1 && y > 0 && y < COLS - 1)
                     {
                         map[x][y] = map_object::TUNNEL;
                     }
                 }
             }
+            map[posX][posY] = map_object::EXIT;
     }
 }
