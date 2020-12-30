@@ -14,6 +14,7 @@ enum class direction{UP, LEFT, DOWN, RIGHT};
 class dwarf : public Rectangle
 {
 
+friend class shop;
 friend class shop_buttons;
 		
 
@@ -24,7 +25,7 @@ private:
 	unsigned int _row = 0;
 	unsigned int _col = 0;
 	direction _dir = direction::RIGHT;
-	unsigned int _gold=5;
+	unsigned int _gold=111;
 	unsigned int _torches=10;
 	unsigned int _pickaxe=20;
 	unsigned int _food=10;
