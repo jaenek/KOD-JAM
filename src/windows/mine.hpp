@@ -6,7 +6,9 @@
 #include "main_window.hpp"
 #include "../buttons/navigate_buttons.hpp"
 #include "../dwarf/dwarf.hpp"
+#include "../dwarf/equipment_bar.hpp"
 #include "../grid/grid.hpp"
+
 
 class mine : window
 {
@@ -17,6 +19,7 @@ private:
 	grid mine_grid{window_width};
 	map_generator map_gen{1000};
 	dwarf player{mine_grid, 60, 90};
+	equipment_bar equipment_bar{ &player };
 	Camera2D camera{};
 
 public:
@@ -69,6 +72,7 @@ public:
 			player.leave_mine();
 
 		leave_mine.update();
+		equipment_bar.update();
 	}
 
 	void draw() {
@@ -76,12 +80,13 @@ public:
 			BeginMode2D(camera);
 
 			mine_grid.draw();
-			player.draw();
+			player.draw();			
 
 			EndMode2D();
 		}
 
 		leave_mine.draw();
+		equipment_bar.draw();
 
 
 		const char* text = "MINE";
