@@ -20,7 +20,7 @@ spotlight::spotlight(Vector2 off)
 
 void spotlight::add(Vector2 v)
 {
-	if (current < MAX_SPOTS + 1)
+	if (current < MAX_SPOTS)
 	{
 		spots[current].pos = { v.x, v.y };
 		SetShaderValue(shader, spots[current].pos_location, &spots[current].pos.x, UNIFORM_VEC2);
