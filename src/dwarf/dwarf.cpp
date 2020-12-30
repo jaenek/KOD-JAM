@@ -136,7 +136,7 @@ void dwarf::place_torch()
 {
 	if (auto block = dynamic_cast<tunnel*>(_grid.cells[_row][_col].get()); block)
 	{
-		if (!_torches && block->has_torch == false)
+		if (!_torches || block->has_torch == true)
 		{
 			//dzwieka dzwieka
 			return;
