@@ -10,7 +10,7 @@
 
 class mine : window
 {
-friend class shop;
+
 
 private:
 	leave_mine_btn leave_mine;

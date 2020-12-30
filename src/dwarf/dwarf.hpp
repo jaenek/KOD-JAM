@@ -14,8 +14,6 @@ enum class direction{UP, LEFT, DOWN, RIGHT};
 class dwarf : public Rectangle
 {
 
-
-friend class shop;
 friend class shop_buttons;
 		
 

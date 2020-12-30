@@ -10,7 +10,7 @@
 
 #include "../dwarf/dwarf.hpp"
 
-#include "mine.hpp"
+
 
 class shop : window
 {
