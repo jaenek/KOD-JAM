@@ -8,7 +8,7 @@ in vec4 fragColor;
 out vec4 finalColor;
 
 #define MAX_SPOTS 99
-#define RADIUS 100
+#define RADIUS 250
 
 struct Spot {
     vec2 pos;		// window coords of spot
@@ -16,12 +16,13 @@ struct Spot {
 
 uniform Spot spots[MAX_SPOTS];      // Spotlight positions array
 uniform int current;
+uniform vec2 offset;
 
 void main()
 {
 	float alpha = 1.0;
 
-	vec2 pos = vec2(gl_FragCoord.xy);
+	vec2 pos = vec2(gl_FragCoord.xy) - offset;
 
 	float d = 65000;
 
@@ -43,5 +44,5 @@ void main()
 		}
     }
 
-	finalColor = vec4(0, 0, 0, alpha*0.7);
+	finalColor = vec4(0, 0, 0, alpha);
 }
