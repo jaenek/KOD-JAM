@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 enum class direction{UP, LEFT, DOWN, RIGHT};
 
@@ -19,7 +19,7 @@ friend class shop_buttons;
 
 private:
 	Texture texture;
-	grid& _grid; // referencja do klasy grid zawieraj�cej tablice 2d wska�nik�w do obiekt�w typu grid_cell
+	grid& _grid; // referencja do klasy grid zawieraj¹cej tablice 2d wskaŸników do obiektów typu grid_cell
 	Color _color;
 	unsigned int _row = 0;
 	unsigned int _col = 0;
@@ -33,7 +33,10 @@ private:
 	std::pair<int, int> block_in_front(const grid & cells) const;//returns pointer to the block in front of dwarf
 
 public:
-	spotlight torch_lights{ { 0, 0 } };
+	// natura rzeczy martwych wymaga pewnych, .... tak
+	// NIE RUSZAĆ
+	spotlight torch_lights{ { -CELL_SIZE * 3, _grid.height/2 + CELL_SIZE*5} };
+	//TU JUŻ MOŻNA
 
 	dwarf(grid& main_grid, float width, float height);//sets attributes base values
 

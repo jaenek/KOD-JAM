@@ -2,6 +2,7 @@
 
 int map_generator::ROWS = 30;
 int map_generator::COLS = 30;
+int map_generator::LEVEL = 1;
 
 map_generator::map_generator(unsigned int seed)
 {

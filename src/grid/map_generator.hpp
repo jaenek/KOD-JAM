@@ -15,6 +15,7 @@ class map_generator
         map_generator(unsigned int seed);
         static int ROWS;
         static int COLS;
+        static int LEVEL;
 
     private:
         const static int gold_chance = 2;

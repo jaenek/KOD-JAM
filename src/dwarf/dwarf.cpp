@@ -48,7 +48,7 @@ void dwarf::move_up(Camera2D & camera)
 			_row--;
 			y -= CELL_SIZE;
 			camera.target = { x, y };
-			torch_lights.update({ 0, -CELL_SIZE });
+			torch_lights.update({ 0, -CELL_SIZE * camera.zoom });
 		}
 	}
 }
@@ -66,7 +66,7 @@ void dwarf::move_left(Camera2D& camera)
 			_col--;
 			x -= CELL_SIZE;
 			camera.target = { x, y };
-			torch_lights.update({ CELL_SIZE, 0 });
+			torch_lights.update({ CELL_SIZE * camera.zoom, 0 });
 		}
 	}
 }
@@ -84,7 +84,7 @@ void dwarf::move_down(Camera2D& camera)
 			_row++;
 			y += CELL_SIZE;
 			camera.target = { x, y };
-			torch_lights.update({ 0, CELL_SIZE });
+			torch_lights.update({ 0, CELL_SIZE * camera.zoom });
 		}
 	}
 }
@@ -102,7 +102,7 @@ void dwarf::move_right(Camera2D& camera)
 			_col++;
 			x += CELL_SIZE;
 			camera.target = { x, y };
-			torch_lights.update({ -CELL_SIZE, 0 });
+			torch_lights.update({ -CELL_SIZE * camera.zoom, 0 });
 		}
 	}
 }
@@ -173,15 +173,15 @@ void dwarf::exit_mine(Camera2D& camera)
 {
 	if (_grid.cells[_row][_col].get()->cell_type == map_object::EXIT)
 	{
-		map_generator::ROWS += 30;
-		map_generator::COLS += 30;
+		map_generator::LEVEL++;
+		map_generator::ROWS = 30*map_generator::LEVEL;
+		map_generator::COLS = 30*map_generator::LEVEL;
 
 		map_generator new_map(1001);
 		_grid.transform(new_map);
 
 		set_start_pos(map_generator::ROWS / 2, map_generator::COLS / 2);
 		camera.target = {x, y};
-
-		torch_lights.reset({ 0, _grid.height / 2 - CELL_SIZE * 3 });
+		torch_lights.reset({ -CELL_SIZE * (3 + 15 * (map_generator::LEVEL-1)), _grid.height / 2 + CELL_SIZE * 5 });
 	}
 }
