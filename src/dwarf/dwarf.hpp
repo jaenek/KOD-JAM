@@ -33,7 +33,7 @@ private:
 	std::pair<int, int> block_in_front(const grid & cells) const;//returns pointer to the block in front of dwarf
 
 public:
-	spotlight torch_lights{_grid.x, _grid.y, _grid.width, _grid.height};
+	spotlight torch_lights{ { 0, 0 } };
 
 	dwarf(grid& main_grid, float width, float height);//sets attributes base values
 

@@ -13,7 +13,7 @@ friend class shop;
 
 private:
 	leave_mine_btn leave_mine;
-	grid mine_grid{window_width};
+	grid mine_grid;
 	map_generator map_gen{1000};
 	dwarf player{mine_grid, 60, 90};
 	Camera2D camera{};

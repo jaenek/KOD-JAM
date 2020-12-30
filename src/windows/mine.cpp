@@ -19,7 +19,7 @@ mine::mine() : leave_mine(425, 450, 150, 75, "Back to town", 20, GRAY, LIGHTGRAY
 	camera.target = {player.x, player.y};
 	camera.offset = {static_cast<float>(window_width)/2, static_cast<float>(window_height)/2};
 	camera.rotation = 0.0f;
-	camera.zoom = 0.2f;
+	camera.zoom = .5f;
 }
 
 void mine::update()
@@ -54,7 +54,7 @@ void mine::draw()
 
 		BeginShaderMode(player.torch_lights.shader);
 
-			DrawRectangleRec(player.torch_lights, WHITE);
+		DrawRectangleRec(mine_grid, WHITE);
 
 		EndShaderMode();
 

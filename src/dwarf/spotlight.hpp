@@ -3,6 +3,8 @@
 #include <raylib.h>
 #include <array>
 
+#include "../windows/window.hpp"
+
 const int MAX_SPOTS = 9;
 
 struct spot {
@@ -11,17 +13,24 @@ struct spot {
 	unsigned int pos_location;
 };
 
-class spotlight : public Rectangle
+class spotlight : window
 {
 	unsigned int current = 0;
 	unsigned int current_location;
+
+	Vector2 offset{};
+	unsigned int offset_location;
 
 	std::array<spot, MAX_SPOTS> spots;
 
 public:
     Shader shader{};
 
-	spotlight(float x, float y, float width, float height);
+	spotlight(Vector2 off);
 
 	void add(Vector2 v);
+
+	void reset(Vector2 v);
+
+	void update(Vector2 v);
 };
