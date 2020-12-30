@@ -32,5 +32,6 @@ file(GLOB PROJECT_SOURCES
 	src/main.cpp
 )
 add_executable(${PROJECT_NAME} ${PROJECT_SOURCES})
+target_compile_definitions(${PROJECT_NAME} PRIVATE GLSL_VERSION=330)
 target_include_directories(${PROJECT_NAME} PRIVATE ${raylib_SOURCE_DIR}/src)
 target_link_libraries(${PROJECT_NAME} PRIVATE project_options raylib)

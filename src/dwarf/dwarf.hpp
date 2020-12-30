@@ -1,25 +1,30 @@
-#pragma once
+﻿#pragma once
 
 enum class direction{UP, LEFT, DOWN, RIGHT};
 
 #include <raylib.h>
 
+#include "spotlight.hpp"
 #include "../cells/gold.hpp"
 #include "../cells/rock.hpp"
 #include "../grid/grid.hpp"
 #include "../windows/window.hpp"
 
+
+
 class dwarf : public Rectangle
 {
+friend class shop;
+friend class shop_buttons;
 
 private:
 	Texture texture;
-	grid& _grid; // referencja do klasy grid zawieraj�cej tablice 2d wska�nik�w do obiekt�w typu grid_cell
+	grid& _grid; // referencja do klasy grid zawieraj¹cej tablice 2d wskaŸników do obiektów typu grid_cell
 	Color _color;
 	unsigned int _row = 0;
 	unsigned int _col = 0;
 	direction _dir = direction::RIGHT;
-	unsigned int _gold=0;
+	unsigned int _gold=5;
 	unsigned int _torches=10;
 	unsigned int _pickaxe=20;
 	unsigned int _food=10;
@@ -28,6 +33,11 @@ private:
 	std::pair<int, int> block_in_front(const grid & cells) const;//returns pointer to the block in front of dwarf
 
 public:
+	// natura rzeczy martwych wymaga pewnych, .... tak
+	// NIE RUSZAĆ
+	spotlight torch_lights{ { -CELL_SIZE * 3, _grid.height/2 + CELL_SIZE*5} };
+	//TU JUŻ MOŻNA
+
 	dwarf(grid& main_grid, float width, float height);//sets attributes base values
 
 	void set_start_pos(int row, int col);

@@ -1,15 +1,18 @@
 #include "grid.hpp"
 
-grid::grid(int window_width)
+grid::grid()
 {
+	x = 0;
+	y = 0;
 	width = map_generator::COLS * CELL_SIZE;
 	height = map_generator::ROWS * CELL_SIZE;
-	x = (window_width - width) / 2;
-	y = 0;
 }
 
 void grid::transform(map_generator&m)
 {
+	width = map_generator::COLS * CELL_SIZE;
+	height = map_generator::ROWS * CELL_SIZE;
+
 	cells.resize(map_generator::ROWS);
 	for (int i = 0; i < map_generator::ROWS; i++)
 	{
