@@ -74,7 +74,7 @@ private:
 	float item_margin = 25;
 	float big_margin = 25;
 	float picture_size = 100;
-	float item_size = 40;
+	float item_size = 45;
 	float text_item_offset = item_size - 10;
 
 
@@ -83,7 +83,7 @@ private:
 	const char* pickaxe_amt;
 	const char* torches_amt;
 	const char* food_amt;
-	int font_size = 18;
+	int font_size = 20;
 	Color font_color = WHITE;
 
 
