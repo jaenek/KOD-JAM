@@ -33,7 +33,7 @@ void main_window::loop()
 		else if (draw_window == window_type::MINE) {
 			mine.update();
 			BeginDrawing();
-			ClearBackground(RAYWHITE);
+			ClearBackground(BLACK);
 			mine.draw();
 			EndDrawing();
 		}

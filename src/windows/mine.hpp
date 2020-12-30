@@ -15,7 +15,10 @@ private:
 	const std::map<map_object, std::string> assets = {
 		{ map_object::TUNNEL, "assets/Podloga.png" },
 		{ map_object::ROCK, "assets/Sciana.png" },
+		{ map_object::BORDER, "assets/Sciana-Krawedz.png"},
 		{ map_object::GOLD_ORE, "assets/Zloto.png" },
+		{ map_object::ENTRY, "assets/Drabina-Gora.png" },
+		{ map_object::EXIT, "assets/Drabina-Dol.png" },
 		{ map_object::TORCH, "assets/Pochodnia.png" },
 	};
 

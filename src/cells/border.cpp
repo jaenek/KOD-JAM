@@ -10,7 +10,6 @@ border::border(float x, float y, float width, float height) : grid_cell(x, y, wi
 
 void border::draw()
 {
-	//DrawTextureEx(textures[cell_type], { x, y }, 0, 3, WHITE);
-	DrawRectangleRec(*this, color);
-
+	//DrawRectangleRec(*this, color);
+	DrawTextureEx(textures[cell_type], { x, y }, 0, 3, WHITE);
 }

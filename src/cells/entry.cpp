@@ -10,6 +10,7 @@ mine_entry::mine_entry(float x, float y, float width, float height) : grid_cell(
 
 void mine_entry::draw()
 {
-	DrawRectangleRec(*this, color);
-	//DrawTextureEx(textures[cell_type], { x, y }, 0, 3, WHITE);
+	//DrawRectangleRec(*this, color);
+	DrawTextureEx(textures[map_object::ROCK], { x, y }, 0, 3, WHITE);
+	DrawTextureEx(textures[cell_type], { x, y }, 0, 3, WHITE);
 }
