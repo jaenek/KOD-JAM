@@ -4,13 +4,6 @@ mine::mine() : leave_mine(425, 450, 150, 75, "Back to town", 20, GRAY, LIGHTGRAY
 {
 	mine_grid.transform(map_gen);
 
-	std::map<map_object, std::string> assets = {
-		{ map_object::TUNNEL, "assets/Podloga.png" },
-		{ map_object::ROCK, "assets/Sciana.png" },
-		{ map_object::GOLD_ORE, "assets/Zloto.png" },
-		{ map_object::TORCH, "assets/Pochodnia.png" },
-	};
-
 	for (auto const& [key, val] : assets)
 		grid_cell::textures[key] = LoadTexture(val.c_str());
 
@@ -20,6 +13,12 @@ mine::mine() : leave_mine(425, 450, 150, 75, "Back to town", 20, GRAY, LIGHTGRAY
 	camera.offset = {static_cast<float>(window_width)/2, static_cast<float>(window_height)/2};
 	camera.rotation = 0.0f;
 	camera.zoom = 1.0f;
+}
+
+mine::~mine()
+{
+	for (auto const& [key, val] : assets)
+		UnloadTexture(grid_cell::textures[key]);
 }
 
 void mine::update()
