@@ -139,6 +139,7 @@ void dwarf::place_torch()
 		}
 		_torches--;
 		block->has_torch = true;
+		torch_lights.add({block->x+30, block->y+20});
 	}
 }
 

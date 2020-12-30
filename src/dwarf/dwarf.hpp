@@ -4,6 +4,7 @@ enum class direction{UP, LEFT, DOWN, RIGHT};
 
 #include <raylib.h>
 
+#include "spotlight.hpp"
 #include "../cells/gold.hpp"
 #include "../cells/rock.hpp"
 #include "../grid/grid.hpp"
@@ -13,11 +14,8 @@ enum class direction{UP, LEFT, DOWN, RIGHT};
 
 class dwarf : public Rectangle
 {
-
-
 friend class shop;
 friend class shop_buttons;
-		
 
 private:
 	Texture texture;
@@ -35,6 +33,8 @@ private:
 	std::pair<int, int> block_in_front(const grid & cells) const;//returns pointer to the block in front of dwarf
 
 public:
+	spotlight torch_lights{_grid.x, _grid.y, _grid.width, _grid.height};
+
 	dwarf(grid& main_grid, float width, float height);//sets attributes base values
 
 	void set_start_pos(int row, int col);
