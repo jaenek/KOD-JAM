@@ -6,6 +6,7 @@
 #include "town.hpp"
 #include "shop.hpp"
 #include "mine.hpp"
+#include "church.hpp"
 
 class main_window : window
 {
