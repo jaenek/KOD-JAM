@@ -24,7 +24,7 @@ private:
 
 	leave_mine_btn leave_mine;
 	grid mine_grid;
-	map_generator map_gen{1000};
+	map_generator map_gen{ GetRandomValue(1, 10000) };
 	dwarf player{mine_grid, 60, 90};
 	Camera2D camera{};
 
@@ -38,7 +38,7 @@ public:
 		return player;
 	}
 
-	void update();
+	void update(bool & quit);
 
 	void draw();
 };

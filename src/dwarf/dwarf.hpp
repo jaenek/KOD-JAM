@@ -53,7 +53,7 @@ public:
 	void use_pickaxe();
 	void place_torch();
 	void leave_mine(); //interaction with mine_entry
-	void exit_mine(Camera2D& camera); //interaction with mine_exit
+	void exit_mine(Camera2D& camera, bool& quit); //interaction with mine_exit
 
 
 	void draw();

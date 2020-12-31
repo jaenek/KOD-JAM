@@ -21,7 +21,7 @@ mine::~mine()
 		UnloadTexture(grid_cell::textures[key]);
 }
 
-void mine::update()
+void mine::update(bool & quit)
 {
 	if (IsKeyPressed(KEY_W))
 		player.move_up(camera);
@@ -37,7 +37,7 @@ void mine::update()
 	if (IsKeyPressed(KEY_T))
 		player.place_torch();
 	if (IsKeyPressed(KEY_E))
-		player.exit_mine(camera);
+		player.exit_mine(camera, quit); 
 	if (IsKeyPressed(KEY_L))
 		player.leave_mine();
 
