@@ -8,7 +8,7 @@ void main_window::loop()
 	town town;
 	mine mine;
 	shop shop(mine.get_dwarf());
-	church church;
+	church church(mine.get_dwarf());
 	
 	
 

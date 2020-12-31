@@ -1,12 +1,18 @@
 #include "church.hpp"
 
-church::church():
-	leave_church((window_width - 200) / 2, 550, 200, 100, "Back to town", 20, GRAY, WHITE, BROWN, WHITE, DARKBROWN, WHITE, 0, 0)
-{	}
+church::church(dwarf& player):
+	leave_church(430, 585, 200, 75, "Back to town", 20, GRAY, WHITE, BROWN, WHITE, DARKBROWN, WHITE, 0, 0),
+	pay_and_pray(775, 685, 200, 75, "Pay and pray", 20, GRAY, WHITE, BROWN, WHITE, DARKBROWN, WHITE, &player, 0, 0),
+	player(player)
+	{}
 
 void church::update()
 {
+
 	leave_church.update();
+	pay_and_pray.update();
+
+	pay_and_pray.pray();
 	
 }
 
@@ -17,6 +23,7 @@ void church::draw()
 
 	//buttons
 	leave_church.draw();
+	pay_and_pray.draw();
 	
 
 	//text
