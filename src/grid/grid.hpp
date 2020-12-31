@@ -18,10 +18,10 @@ const float CELL_SIZE = 60;
 
 class dwarf;
 
-class grid : Rectangle {
+class grid : public Rectangle {
 	friend class dwarf;
 public:
-	grid(int window_width);
+	grid();
 
 	void transform(map_generator &m);
 
