@@ -22,6 +22,10 @@ void button::justify_text()
 		text_pos_x = x + text_pos_x;
 		text_pos_y = y + (height - font_size) / 2;
 	}
+	else {
+		text_pos_x = x + text_pos_x;
+		text_pos_y = y + text_pos_y;
+	}
 	
 }
 

@@ -16,6 +16,7 @@ class dwarf : public Rectangle
 {
 friend class shop;
 friend class shop_buttons;
+friend class church_buttons;
 
 private:
 	Texture texture;
@@ -29,6 +30,8 @@ private:
 	unsigned int _pickaxe=20;
 	unsigned int _food=10;
 	unsigned int _hp=10;
+
+	bool pay_and_pray = false; //TODO do zmiany, jak wam nie pasuje
 
 	std::pair<int, int> block_in_front(const grid & cells) const;//returns pointer to the block in front of dwarf
 
@@ -50,7 +53,7 @@ public:
 	void use_pickaxe();
 	void place_torch();
 	void leave_mine(); //interaction with mine_entry
-	void exit_mine(Camera2D& camera); //interaction with mine_exit
+	void exit_mine(Camera2D& camera, bool& quit); //interaction with mine_exit
 
 
 	void draw();

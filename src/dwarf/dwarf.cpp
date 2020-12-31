@@ -169,15 +169,20 @@ void dwarf::leave_mine()
 	}
 }
 
-void dwarf::exit_mine(Camera2D& camera)
+void dwarf::exit_mine(Camera2D& camera, bool& quit)
 {
 	if (_grid.cells[_row][_col].get()->cell_type == map_object::EXIT)
 	{
+		if (map_generator::LEVEL == 4)
+		{
+			quit = true;
+			return;
+		}
 		map_generator::LEVEL++;
 		map_generator::ROWS = 30*map_generator::LEVEL;
 		map_generator::COLS = 30*map_generator::LEVEL;
 
-		map_generator new_map(1001);
+		map_generator new_map(GetRandomValue(1, 10000));
 		_grid.transform(new_map);
 
 		set_start_pos(map_generator::ROWS / 2, map_generator::COLS / 2);

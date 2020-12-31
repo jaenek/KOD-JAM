@@ -10,6 +10,7 @@ class town : window
 private:
 	go_shop_btn go_shop;
 	go_mine_btn go_mine;
+	go_church_btn go_church;
 
 
 	Image image = LoadImage("assets/Miasto-Dzien.png");   // Loaded in CPU memory (RAM)

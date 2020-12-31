@@ -8,7 +8,7 @@ void main_window::loop()
 	town town;
 	mine mine;
 	shop shop(mine.get_dwarf());
-	
+	church church(mine.get_dwarf());
 	
 
 	bool quit = false;
@@ -30,13 +30,23 @@ void main_window::loop()
 			EndDrawing();
 
 		}
+		else if (draw_window == window_type::CHURCH) {
+			church.update();
+			BeginDrawing();
+			ClearBackground(RAYWHITE);
+			church.draw();
+			EndDrawing();
+
+		}
 		else if (draw_window == window_type::MINE) {
-			mine.update();
+			mine.update(quit);
 			BeginDrawing();
 			ClearBackground(BLACK);
 			mine.draw();
 			EndDrawing();
 		}
+
+		
 
 	}
 
