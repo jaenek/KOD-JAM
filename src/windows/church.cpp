@@ -29,6 +29,11 @@ church::church(dwarf& player) :
 
 void church::update()
 {
+	if (leave_church.first_visit)
+	{
+		if (IsKeyDown(KEY_SPACE))
+			frame_counter += 8;
+	}
 
 	leave_church.update();
 	pay_and_pray.update();
@@ -54,6 +59,12 @@ void church::draw()
 		else {
 			DrawText(TextSubtext(messages[3], 0, (frame_counter - 1080) / 3), 220, 160, 30, BLACK);
 			if(frame_counter > 2750) leave_church.draw();
+		}
+
+		if (frame_counter < 2750)
+		{
+			const char* text = "HOLD SPACE TO SKIP";
+			DrawText(text, 400, window_height - 200, 20, BLACK);
 		}
 	}
 	else
