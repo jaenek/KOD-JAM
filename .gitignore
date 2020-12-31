@@ -3,7 +3,9 @@
 .vs/
 .cache/
 build/
+webbuild/
 tags
 src/compile_commands.json
 *.swp
 *.exe
+*.zip
