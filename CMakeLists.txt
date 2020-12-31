@@ -26,13 +26,18 @@ if (NOT raylib_FOUND)
   endif()
 endif()
 
+if (EMSCRIPTEN)
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -s USE_GLFW=3 -s ASSERTIONS=1 -s WASM=1 -s ASYNCIFY --preload-file assets/ --preload-file resources/")
+    set(CMAKE_EXECUTABLE_SUFFIX ".html") # This line is used to set your executable to build with the emscripten html template so taht you can directly open it.
+endif ()
+
 # This is the main part:
 file(GLOB PROJECT_SOURCES
 	src/*/*.cpp
 	src/main.cpp
 )
 add_executable(${PROJECT_NAME} ${PROJECT_SOURCES})
-target_compile_definitions(${PROJECT_NAME} PRIVATE GLSL_VERSION=330)
+target_compile_definitions(${PROJECT_NAME} PRIVATE GLSL_VERSION=100)
 target_include_directories(${PROJECT_NAME} PRIVATE ${raylib_SOURCE_DIR}/src)
 target_link_libraries(${PROJECT_NAME} PRIVATE project_options raylib)
 

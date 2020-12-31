@@ -1,11 +1,6 @@
-#version 330
+#version 100
 
-// Input vertex attributes (from vertex shader)
-in vec2 fragTexCoord;
-in vec4 fragColor;
-
-// Output fragment color
-out vec4 finalColor;
+precision mediump float;
 
 #define MAX_SPOTS 99
 #define ENTRY_EXIT_RADIUS 100
@@ -25,11 +20,12 @@ void main()
 
 	vec2 pos = vec2(gl_FragCoord.xy) - offset;
 
-	float d = 65000;
+	float d;
 
-    for (int i = 0; i < current; i++)
+    for (int i = 0; i < MAX_SPOTS; i++)
     {
-		float radius = (i > 1) ? RADIUS : ENTRY_EXIT_RADIUS;
+		if (i == current) break;
+		float radius = float((i > 1) ? RADIUS : ENTRY_EXIT_RADIUS);
 
 		d = distance(pos, spots[i].pos);
 
@@ -46,5 +42,5 @@ void main()
 		}
     }
 
-	finalColor = vec4(0, 0, 0, alpha);
+	gl_FragColor = vec4(0, 0, 0, alpha);
 }

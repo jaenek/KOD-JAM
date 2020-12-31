@@ -25,7 +25,7 @@ private:
 	};
 
 	grid mine_grid;
-	map_generator map_gen{ GetRandomValue(1, 10000) };
+	map_generator map_gen{ static_cast<unsigned int>(GetRandomValue(1, 10000)) };
 	dwarf player{mine_grid, 60, 90};
 	equipment_bar equipment{ &player };
 	Camera2D camera{};

@@ -38,8 +38,8 @@ void mine::update(bool & quit)
 		player.place_torch();
 	if (IsKeyPressed(KEY_E))
 	{
-		player.exit_mine(camera, quit);
 		player.leave_mine();
+		player.exit_mine(camera, quit);
 	}
 
 	equipment.update();
