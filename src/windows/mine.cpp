@@ -1,6 +1,6 @@
 #include "mine.hpp"
 
-mine::mine() : leave_mine(425, 450, 150, 75, "Back to town", 20, GRAY, LIGHTGRAY, BROWN, GRAY, DARKBROWN, GRAY)
+mine::mine()
 {
 	mine_grid.transform(map_gen);
 
@@ -41,8 +41,7 @@ void mine::update(bool & quit)
 	if (IsKeyPressed(KEY_L))
 		player.leave_mine();
 
-	leave_mine.update();
-	equipment_bar.update();
+	equipment.update();
 }
 
 void mine::draw()
@@ -60,10 +59,7 @@ void mine::draw()
 
 	EndShaderMode();
 
-
-	leave_mine.draw();
-	equipment_bar.draw();
-
+	equipment.draw();
 
 	const char* text = "MINE";
 	DrawText(text, (window_width - MeasureText(text, 30)) / 2, 50, 30, DARKGRAY);

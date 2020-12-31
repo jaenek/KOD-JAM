@@ -24,11 +24,10 @@ private:
 		{ map_object::TORCH, "assets/Pochodnia.png" },
 	};
 
-	leave_mine_btn leave_mine;
 	grid mine_grid;
 	map_generator map_gen{ GetRandomValue(1, 10000) };
 	dwarf player{mine_grid, 60, 90};
-	equipment_bar equipment_bar{ &player };
+	equipment_bar equipment{ &player };
 	Camera2D camera{};
 
 public:
