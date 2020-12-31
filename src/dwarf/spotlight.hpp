@@ -5,7 +5,7 @@
 
 #include "../windows/window.hpp"
 
-const int MAX_SPOTS = 9;
+const int MAX_SPOTS = 99;
 
 struct spot {
 	Vector2 pos;
