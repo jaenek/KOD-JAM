@@ -11,8 +11,8 @@ private:
 
 	leave_church_btn leave_church;
 
-	/*Image image = LoadImage("assets/Kosciol.png");
-	Texture2D texture = LoadTextureFromImage(image);*/
+	Image image = LoadImage("assets/kosciol_bogowie.png");
+	Texture2D texture = LoadTextureFromImage(image);
 
 public:
 	

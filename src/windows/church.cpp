@@ -13,7 +13,7 @@ void church::update()
 void church::draw()
 {
 	//background
-	//DrawTextureEx(texture, { 0, 0 }, 0, 6, WHITE);
+	DrawTextureEx(texture, { 0, 0 }, 0, 6, WHITE);
 
 	//buttons
 	leave_church.draw();
