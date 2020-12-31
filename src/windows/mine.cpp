@@ -37,9 +37,10 @@ void mine::update(bool & quit)
 	if (IsKeyPressed(KEY_T))
 		player.place_torch();
 	if (IsKeyPressed(KEY_E))
-		player.exit_mine(camera, quit); 
-	if (IsKeyPressed(KEY_L))
+	{
+		player.exit_mine(camera, quit);
 		player.leave_mine();
+	}
 
 	equipment.update();
 }
