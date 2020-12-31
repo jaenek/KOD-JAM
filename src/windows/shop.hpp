@@ -17,6 +17,16 @@ private:
 
 	dwarf& player; //referencja do ekwipunku gracza
 
+	const char* gold_amt;
+	const char* torches_amt;
+	const char* pickaxe_amt;
+	const char* food_amt;
+
+	Image background_img = LoadImage("assets/Sklep.png");
+	Image gold_img = LoadImage("assets/Zloto-przedmiot.png");
+	Texture2D background_texture = LoadTextureFromImage(background_img);
+	Texture2D gold_texture = LoadTextureFromImage(gold_img);
+
 public:
 	shop(dwarf& player);
 

@@ -11,7 +11,7 @@
 
 class mine : window
 {
-friend class shop;
+
 
 private:
 	const std::map<map_object, std::string> assets = {
