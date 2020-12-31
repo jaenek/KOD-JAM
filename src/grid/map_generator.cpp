@@ -135,33 +135,33 @@ void map_generator::add_exit()
 
     switch (rand_int)
     {
-        case 0:
-            posX = rand() % 5 + 1;
-            posY = rand() % (COLS - 2) + 1;
-            break;
-        case 1:
-            posX = rand() % (ROWS - 2) + 1;
-            posY = rand() % 5 + 1;
-            break;
-        case 2:
-            posX = ROWS - 1 - (rand() % 5 + 1);
-            posY = rand() % (COLS - 2) + 1;
-            break;
-        case 3:
-            posX = rand() % (ROWS - 2) + 1;
-            posY = COLS - 1 - (rand() % 5 + 1);
-            break;
-
-            for (int x = posX - 1; x <= posX + 1; x++)
-            {
-                for (int y = posY - 1; y <= posY + 1; y++)
-                {
-                    if (x > 0 && x < ROWS - 1 && y > 0 && y < COLS - 1)
-                    {
-                        map[x][y] = map_object::TUNNEL;
-                    }
-                }
-            }
-            map[posX][posY] = map_object::EXIT;
+    case 0:
+        posX = rand() % 5 + 1;
+        posY = rand() % (COLS - 2) + 1;
+        break;
+    case 1:
+        posX = rand() % (ROWS - 2) + 1;
+        posY = rand() % 5 + 1;
+        break;
+    case 2:
+        posX = ROWS - 1 - (rand() % 5 + 1);
+        posY = rand() % (COLS - 2) + 1;
+        break;
+    case 3:
+        posX = rand() % (ROWS - 2) + 1;
+        posY = COLS - 1 - (rand() % 5 + 1);
+        break;
     }
+
+    for (int x = posX - 1; x <= posX + 1; x++)
+    {
+        for (int y = posY - 1; y <= posY + 1; y++)
+        {
+            if (x > 0 && x < ROWS - 1 && y > 0 && y < COLS - 1)
+            {
+                map[x][y] = map_object::TUNNEL;
+            }
+        }
+    }
+    map[posX][posY] = map_object::EXIT;
 }
