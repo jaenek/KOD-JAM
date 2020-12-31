@@ -2,7 +2,7 @@
 
 #include <raylib.h>
 
-enum class window_type { TOWN, SHOP, MINE };
+enum class window_type { TOWN, SHOP, MINE, CHURCH};
 
 class window
 {
