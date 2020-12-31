@@ -1,14 +1,14 @@
 #include "church.hpp"
 
 const char* messages[4] = {
-	"           You wake up in a familiar looking church.\n"
-	"            You've seen it before, in your dreams.\n"
-	"        Suddenly, a voice echoes through the building.\n",
+	"               You wake up in a familiar looking church.\n"
+	"                You've seen it before, in your dreams.\n"
+	"             suddenly, a voice echoes through the building.\n",
 
-	"        \"Welcome my child, you are finally awake\"\n",
+	"              \"Welcome my child, you are finally awake\"\n",
 
-	"You look around, wondering where is the voice coming from.\n"
-	"          Before you can respond, the voice says:\n",
+	"        You look around, wondering where is the voice coming from.\n"
+	"               Before you can respond, the voice says:\n",
 
 	"            \"Fear not my child because thy is my prophet,\n"
 	"            choosen to save the world from the darkness\n"
@@ -39,7 +39,7 @@ void church::update()
 	pay_and_pray.update();
 
 	pay_and_pray.pray();
-	
+
 }
 
 void church::draw()
@@ -49,15 +49,16 @@ void church::draw()
 		frame_counter++;
 
 		DrawTextureEx(texture, { 0, 0 }, 0, 6, WHITE);
+		DrawTextureEx(message_texture, { 110, 0 }, 0, 6, WHITE);
 		//DrawText(TextSubtext(message, 0, frame_counter / 10), 210, 160, 20, MAROON);
-		if (frame_counter < 480)
+		if (frame_counter < 540)
 			DrawText(TextSubtext(messages[0], 0, frame_counter / 3), 220, 160, 30, BLACK);
-		else if (frame_counter < 660)
-			DrawText(TextSubtext(messages[1], 0, (frame_counter - 480) / 3), 220, 160, 30, BLACK);
-		else if (frame_counter < 1080)
-			DrawText(TextSubtext(messages[2], 0, (frame_counter - 660) / 3), 220, 160, 30, BLACK);
+		else if (frame_counter < 720)
+			DrawText(TextSubtext(messages[1], 0, (frame_counter - 540) / 3), 220, 160, 30, BLACK);
+		else if (frame_counter < 1140)
+			DrawText(TextSubtext(messages[2], 0, (frame_counter - 720) / 3), 220, 160, 30, BLACK);
 		else {
-			DrawText(TextSubtext(messages[3], 0, (frame_counter - 1080) / 3), 220, 160, 30, BLACK);
+			DrawText(TextSubtext(messages[3], 0, (frame_counter - 1140) / 3), 220, 160, 30, BLACK);
 			if(frame_counter > 2750) leave_church.draw();
 		}
 

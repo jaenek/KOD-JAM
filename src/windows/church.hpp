@@ -16,11 +16,12 @@ private:
 	dwarf& player;
 
 	Texture2D texture = LoadTexture("assets/kosciol_taca.png");
+	Texture2D message_texture = LoadTexture("assets/Wiadomosc.png");
 
 	unsigned int frame_counter = 0;
 
 public:
-	
+
 	church(dwarf& player);
 
 	void update();
