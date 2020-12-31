@@ -15,66 +15,51 @@ public:
 
 		this->player = player;
 
-		//rectangle properties 
-		this->width = 600;
-		this->height = 125;
+		//rectangle properties
+		this->width = 220;
+		this->height = 80;
 		this->x = (window_width- width)/2;
 		this->y = window_height - height;
 
 	}
 
 	void update(){
-		
-		
+
+
 		gold_amt = TextFormat("%d", player->_gold);
 		pickaxe_amt = TextFormat("%d", player->_pickaxe);
 		torches_amt = TextFormat("%d", player->_torches);
-		food_amt = TextFormat("%d", player->_food);	
+		food_amt = TextFormat("%d", player->_food);
 	}
 
 	void draw() {
 
-		//main frame 
+		//main frame
 		DrawRectangleRec(*this, Color{0,0,0,100});
 
-		//picture
-		DrawRectangle(x + small_margin, y + small_margin, picture_size, picture_size, GREEN);
-
-	
-
-		//goold, pickaxe, torches, food: items_frames
-		DrawRectangle(x + padding + picture_size + big_margin + 0 * item_size + 0 * item_margin, y + padding, item_size, item_size, GOLD);
-		DrawRectangle(x + padding + picture_size + big_margin + 1 * item_size + 1 * item_margin, y + padding, item_size, item_size, GRAY);
-		DrawRectangleLines(x + padding + picture_size + big_margin + 2 * item_size + 2 * item_margin, y + padding, item_size, item_size, ORANGE);
-		DrawRectangle(x + padding + picture_size + big_margin + 3 * item_size + 3 * item_margin, y + padding, item_size, item_size, BLUE);
-
-
 		//goold, pickaxe, torches, food: items_textures
-		DrawTextureEx(torach_texture, { x + padding + picture_size + big_margin + 2 * item_size + 2 * item_margin, y + padding }, 0, 2, WHITE);
-
+		DrawTextureEx(gold_texture,    { x + padding + 0 * item_size + 0 * item_margin, y + padding }, 0, 4, WHITE);
+		DrawTextureEx(pickaxe_texture, { x + padding + 1 * item_size + 1 * item_margin, y + padding }, 0, 4, WHITE);
+		DrawTextureEx(torch_texture,   { x + padding + 2 * item_size + 2 * item_margin, y + padding }, 0, 4, WHITE);
+		DrawTextureEx(food_texture,    { x + padding + 3 * item_size + 3 * item_margin, y + padding }, 0, 4, WHITE);
 
 		//goold, pickaxe, torches, food: items_text
-		DrawText(gold_amt, x + padding + picture_size + big_margin + 0 * item_size + 0 * item_margin + text_item_offset, y + padding + text_item_offset, font_size, font_color);
-		DrawText(pickaxe_amt, x + padding + picture_size + big_margin + 1 * item_size + 1 * item_margin + text_item_offset, y + padding + text_item_offset, font_size, font_color);
-		DrawText(torches_amt, x + padding + picture_size + big_margin + 2 * item_size + 2 * item_margin + text_item_offset, y + padding + text_item_offset, font_size, font_color);
-		DrawText(food_amt, x + padding + picture_size + big_margin + 3 * item_size + 3 * item_margin + text_item_offset, y + padding + text_item_offset, font_size, font_color);
-
-		
+		DrawText(gold_amt,    x + padding + 0 * item_size + 0 * item_margin + text_item_offset, y + padding + text_item_offset, font_size, font_color);
+		DrawText(pickaxe_amt, x + padding + 1 * item_size + 1 * item_margin + text_item_offset, y + padding + text_item_offset, font_size, font_color);
+		DrawText(torches_amt, x + padding + 2 * item_size + 2 * item_margin + text_item_offset, y + padding + text_item_offset, font_size, font_color);
+		DrawText(food_amt,    x + padding + 3 * item_size + 3 * item_margin + text_item_offset, y + padding + text_item_offset, font_size, font_color);
 	}
-	
+
 
 private:
 
 	dwarf* player;
 
 	//equipment_bar set up variables
-
-	float padding = 12.5;
+	float padding = 10;
 	float small_margin = 12.5;
 	float item_margin = 25;
-	float big_margin = 25;
-	float picture_size = 100;
-	float item_size = 45;
+	float item_size = 40;
 	float text_item_offset = item_size - 10;
 
 
@@ -88,12 +73,9 @@ private:
 
 
 	//textures
-	Image torach_img = LoadImage("assets/Pochodnia.png");
-	Texture2D torach_texture = LoadTextureFromImage(torach_img);
-
-	
-
-		
-
+	Texture2D gold_texture = LoadTexture("assets/Zloto-przedmiot.png");
+	Texture2D torch_texture = LoadTexture("assets/Pochodnia-przedmiot.png");
+	Texture2D pickaxe_texture = LoadTexture("assets/Kilof-przedmiot.png");
+	Texture2D food_texture = LoadTexture("assets/Jedzenie-przedmiot.png");
 
 };
