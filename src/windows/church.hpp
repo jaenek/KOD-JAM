@@ -15,8 +15,9 @@ private:
 	church_buttons pay_and_pray;
 	dwarf& player;
 
-	Image image = LoadImage("assets/kosciol_taca.png");
-	Texture2D texture = LoadTextureFromImage(image);
+	Texture2D texture = LoadTexture("assets/kosciol_taca.png");
+
+	unsigned int frame_counter = 0;
 
 public:
 	
