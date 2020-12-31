@@ -42,6 +42,7 @@ void mine::update(bool & quit)
 		player.leave_mine();
 
 	leave_mine.update();
+	equipment_bar.update();
 }
 
 void mine::draw()
@@ -55,12 +56,13 @@ void mine::draw()
 
 	BeginShaderMode(player.torch_lights.shader);
 
-	DrawRectangleRec(mine_grid, WHITE);
+		DrawRectangleRec(mine_grid, WHITE);
 
 	EndShaderMode();
 
 
 	leave_mine.draw();
+	equipment_bar.draw();
 
 
 	const char* text = "MINE";

@@ -5,7 +5,9 @@
 #include "window.hpp"
 #include "../buttons/navigate_buttons.hpp"
 #include "../dwarf/dwarf.hpp"
+#include "../dwarf/equipment_bar.hpp"
 #include "../grid/grid.hpp"
+
 
 class mine : window
 {
@@ -26,6 +28,7 @@ private:
 	grid mine_grid;
 	map_generator map_gen{ GetRandomValue(1, 10000) };
 	dwarf player{mine_grid, 60, 90};
+	equipment_bar equipment_bar{ &player };
 	Camera2D camera{};
 
 public:
