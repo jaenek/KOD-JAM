@@ -3,6 +3,7 @@
 #include <raylib.h>
 
 #include "window.hpp"
+#include "main_window.hpp"
 #include "../buttons/navigate_buttons.hpp"
 #include "../buttons/shop_buttons.hpp"
 #include "../dwarf/dwarf.hpp"
@@ -22,10 +23,8 @@ private:
 	const char* pickaxe_amt;
 	const char* food_amt;
 
-	Image background_img = LoadImage("assets/Sklep.png");
-	Image gold_img = LoadImage("assets/Zloto-przedmiot.png");
-	Texture2D background_texture = LoadTextureFromImage(background_img);
-	Texture2D gold_texture = LoadTextureFromImage(gold_img);
+	Texture2D background_texture = LoadTexture("assets/Sklep.png");
+	Texture2D gold_texture = LoadTexture("assets/Zloto-przedmiot.png");
 
 public:
 	shop(dwarf& player);
