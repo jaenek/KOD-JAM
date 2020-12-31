@@ -33,6 +33,11 @@ void dwarf::set_start_pos(int row, int col)
 	_col = col;
 	x = col * CELL_SIZE + _grid.cells[0][0]->x;
 	y = row * CELL_SIZE + _grid.cells[0][0]->y - CELL_SIZE/2;
+
+	for (auto& row : _grid.cells)
+		for (auto& cell : row)
+			if (cell->cell_type == map_object::ENTRY || cell->cell_type == map_object::EXIT)
+				torch_lights.add({ cell->x + CELL_SIZE / 2, -cell->y + CELL_SIZE / 2 });
 }
 
 void dwarf::move_up(Camera2D & camera)
@@ -185,8 +190,9 @@ void dwarf::exit_mine(Camera2D& camera, bool& quit)
 		map_generator new_map(GetRandomValue(1, 10000));
 		_grid.transform(new_map);
 
-		set_start_pos(map_generator::ROWS / 2, map_generator::COLS / 2);
-		camera.target = {x, y};
 		torch_lights.reset({ -CELL_SIZE * (3 + 15 * (map_generator::LEVEL-1)), _grid.height / 2 + CELL_SIZE * 5 });
+
+		set_start_pos(map_generator::ROWS / 2, map_generator::COLS / 2);
+		camera.target = { x, y };
 	}
 }

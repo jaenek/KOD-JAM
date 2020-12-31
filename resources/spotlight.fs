@@ -8,6 +8,7 @@ in vec4 fragColor;
 out vec4 finalColor;
 
 #define MAX_SPOTS 99
+#define ENTRY_EXIT_RADIUS 100
 #define RADIUS 250
 
 struct Spot {
@@ -28,17 +29,18 @@ void main()
 
     for (int i = 0; i < current; i++)
     {
+		float radius = (i > 1) ? RADIUS : ENTRY_EXIT_RADIUS;
+
 		d = distance(pos, spots[i].pos);
 
-
-		if (d > RADIUS)
+		if (d > radius)
 		{
 			if (alpha < 1.0) continue;
 			alpha = 1.0;
 		}
 		else
 		{
-			float candidate = d/RADIUS;
+			float candidate = d/radius;
 			if (candidate > alpha) continue;
 			alpha = candidate;
 		}
